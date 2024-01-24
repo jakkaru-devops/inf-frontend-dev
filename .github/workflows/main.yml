@@ -52,11 +52,11 @@ jobs:
           git config --global user.email "savamedvedevvv@gmail.com"
           git config --global user.name "jakkaru-devops"
 
-          - name: Clone Helm repository
-            run: git clone $SOURCE_REPO_ARGOCD
+      - name: Clone Helm repository
+        run: git clone $SOURCE_REPO_ARGOCD
           
-          - name: Update version and repository in Helm charts
-            run: |
+      - name: Update version and repository in Helm charts
+        run: |
               cd $CI_PROJECT_NAME
               sed -i "s|app.version.*|app.version: \"$IMAGE_TAG\"|" values.yaml
               git add values.yaml
