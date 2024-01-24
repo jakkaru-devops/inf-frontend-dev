@@ -1,4 +1,4 @@
-name: Push to Yandex Cloud Container Registry 1234
+name: Push to Yandex Cloud Container Registry
 env:
   SOURCE_REPO_ARGOCD: https://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@github.com/jakkaru-devops/inf-argocd
   IMAGE_TAG: 2
@@ -60,8 +60,7 @@ jobs:
         run: |
               cd $CI_PROJECT_NAME
               cat values.yaml
-              sed -i "s|app.version.*|app.version: $IMAGE_TAG |" values.yaml
+              sed -i 's/app.version.*/app.version: $IMAGE_TAG/g' values.yaml          
               git add values.yaml
               git diff-index --quiet HEAD || git commit -m "CI: Update app version to $IMAGE_TAG"
               git push
-              
