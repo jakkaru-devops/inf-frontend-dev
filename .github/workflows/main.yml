@@ -65,7 +65,6 @@ jobs:
           
       - name: Update version and repository in Helm charts
         run: |
-              cd $CI_PROJECT_NAME
               yq eval '.app.version =$IMAGE_TAG' $CI_PROJECT_NAME/values.yaml > $CI_PROJECT_NAME/values.yaml
               git add values.yaml
               git diff-index --quiet HEAD || git commit -m " CI: Update app version to $(echo $IMAGE_TAG) "
