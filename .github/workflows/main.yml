@@ -35,7 +35,7 @@ jobs:
       #     docker build -t cr.yandex/$CR_REGISTRY/$CR_REPOSITORY:$IMAGE_TAG .
       #     docker push cr.yandex/$CR_REGISTRY/$CR_REPOSITORY:$IMAGE_TAG
 
-
+         ##sed -i -e "s/test:.*/test: $IMAGE_TAG/g" values.yaml
       
       - name: Checkout source code
         uses: actions/checkout@v2
@@ -59,7 +59,13 @@ jobs:
       - name: Update version and repository in Helm charts
         run: |
               cd $CI_PROJECT_NAME
-              sed -i -e "s/test:.*/test: $IMAGE_TAG/g" values.yaml
+              sed -i -e "/^app:/{n;s/version:.*/version: $IMAGE_TAG/g;}" values.yaml
               git add values.yaml
               git diff-index --quiet HEAD || git commit -m " CI: Update app version to $(echo $IMAGE_TAG) "
               git push
+
+
+
+
+
+          
