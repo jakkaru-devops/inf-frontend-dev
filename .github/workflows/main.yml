@@ -2,7 +2,6 @@ name: Push to Yandex Cloud Container Registry
 env:
   SOURCE_REPO_ARGOCD: https://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@github.com/jakkaru-devops/inf-argocd
   IMAGE_TAG: 1.9
-  
   CI_PROJECT_NAME: inf-argocd/HelmCharts/Development/
 on:
   push:
@@ -60,8 +59,8 @@ jobs:
       - name: Update version and repository in Helm charts
         run: |
               cd $CI_PROJECT_NAME
-              sed "s/app.version.*/app.version: $IMAGE_TAG/g" values.yaml
               cat values.yaml
+              sed "s/app.version.*/app.version: $IMAGE_TAG/g" values.yaml >  values.yaml
               git add values.yaml
               git diff-index --quiet HEAD || git commit -m "CI: Update app version to $IMAGE_TAG"
               git push
