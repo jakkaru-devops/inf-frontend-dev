@@ -64,15 +64,12 @@ jobs:
         with:
           cmd: |
             cd $CI_PROJECT_NAME
-            yq --inplace '.app.version =1.7' values.yaml       
-            git add values.yaml
-            git diff-index --quiet HEAD || git commit -m " CI: Update app version to $(echo $IMAGE_TAG) "
-            git push
+            yq -i '.app.version =1.7' values.yaml       
+            
 
-      # - name: Update version and repository in Helm charts
-      #   run: |
-      #         cd $CI_PROJECT_NAME
-      #         yq --inplace '.app.version =1.7' values.yaml       
-      #         git add values.yaml
-      #         git diff-index --quiet HEAD || git commit -m " CI: Update app version to $(echo $IMAGE_TAG) "
-      #         git push
+      - name: Update version and repository in Helm charts
+        run: |
+              cd $CI_PROJECT_NAME
+              git add values.yaml
+              git diff-index --quiet HEAD || git commit -m " CI: Update app version to $(echo $IMAGE_TAG) "
+              git push
