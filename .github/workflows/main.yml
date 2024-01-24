@@ -65,7 +65,8 @@ jobs:
           
       - name: Update version and repository in Helm charts
         run: |
-              yq eval '.app.version ="2222"' inf-argocd/HelmCharts/Development/values.yaml > inf-argocd/HelmCharts/Development/values.yaml
+              cd $CI_PROJECT_NAME
+              yq eval '.app.version ="2222"' values.yaml > values.yaml
               git add values.yaml
               git diff-index --quiet HEAD || git commit -m " CI: Update app version to $(echo $IMAGE_TAG) "
               git push
