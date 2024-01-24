@@ -30,3 +30,31 @@ jobs:
         run: |
           docker build -t cr.yandex/$CR_REGISTRY/$CR_REPOSITORY:$IMAGE_TAG .
           docker push cr.yandex/$CR_REGISTRY/$CR_REPOSITORY:$IMAGE_TAG
+
+
+          - name: Checkout source code
+          uses: actions/checkout@v2
+        
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.5.1
+        with:
+            ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+        
+      - name: Install Helm
+        uses: azure/setup-helm@v1
+          
+      - name: Configure Git
+        run: |
+          git config --global user.email "savamedvedevvv@gmail.com"
+          git config --global user.name "jakkaru-devops"
+
+          - name: Clone Helm repository
+            run: git clone http://jakkaru-devops:sava131097@$helm_repo/git@github.com:jakkaru-devops/inf-argocd.git
+          
+          - name: Update version and repository in Helm charts
+            run: |
+              cd $CI_PROJECT_NAME
+              sed -i "s|app.version.*|app.version: \"$IMAGE_TAG\"|" values.yaml
+              git add values.yaml
+              git diff-index --quiet HEAD || git commit -m "CI: Update app version to $IMAGE_TAG"
+              git push
