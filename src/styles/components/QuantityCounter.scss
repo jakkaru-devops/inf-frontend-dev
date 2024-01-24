@@ -1,0 +1,43 @@
+.counter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 20px;
+  padding: 0 5px;
+
+  .button {
+    margin: 0;
+    border: none;
+    background: none !important;
+    box-shadow: none;
+    img {
+      cursor: pointer;
+      width: 15px;
+      height: 15px;
+    }
+  }
+}
+
+.quantityCounter-button {
+  background-color: $primaryColor;
+  color: #ffffff;
+  border: 1px solid $context-color;
+}
+
+.quantityCounter-button:hover,
+.quantityCounter-button:focus {
+  background-color: $primaryColorLighter;
+  color: #ffffff;
+}
+
+.quantityCounter-button-active {
+  background-color: transparent;
+  border: 1px solid $context-color;
+  color: $primaryColor;
+  transition: all 0.3s;
+}
+
+.quantityCounter-button-active:hover,
+.quantityCounter-button-active:focus {
+  color: $primaryColorLighter;
+}

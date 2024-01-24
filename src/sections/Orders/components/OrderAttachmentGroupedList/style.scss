@@ -1,0 +1,20 @@
+.order-attachment-grouped-list {
+  display: table;
+
+  .ant-upload.ant-upload-select {
+    display: block;
+  }
+
+  .order-attachment-item {
+    padding: 1px 0;
+
+    &__delete {
+      cursor: pointer;
+      margin-left: 7px;
+
+      img {
+        width: 12px;
+      }
+    }
+  }
+}

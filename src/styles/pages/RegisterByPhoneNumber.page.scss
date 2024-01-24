@@ -1,0 +1,52 @@
+.register-by-phone-number__page {
+  &__top-panel {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    a {
+      display: block;
+      margin-left: 100px;
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 14px;
+      color: #767676;
+      text-decoration: none;
+      position: relative;
+
+      &:first-child {
+        margin-left: 0;
+      }
+      &::after {
+        content: '';
+        display: block;
+        width: 110%;
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        right: 0;
+        margin: auto;
+        height: 3px;
+        background: #E6332A;
+        transition: 0.3s;
+        width: 0%;
+      }
+      &.active {
+        color: #525252;
+
+        &::after {
+          width: 110%;
+          left: -5%;
+        }
+      }
+      &:hover {
+        color: #525252;
+
+        &::after{
+          width: 110%;
+          left: -5%;
+        }
+      }
+    }
+  }
+}

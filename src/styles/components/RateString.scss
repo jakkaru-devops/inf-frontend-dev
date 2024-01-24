@@ -1,0 +1,16 @@
+.rate-string {
+  display: inline-flex;
+  flex-flow: row nowrap;
+
+  &__rate {
+    font-size: 13px;
+    font-weight: 500;
+    margin-right: 5px;
+  }
+
+  &__star {
+    display: flex;
+    align-items: center;
+    flex: 0 0 auto;
+  }
+}

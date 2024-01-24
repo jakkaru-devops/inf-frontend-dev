@@ -1,0 +1,27 @@
+.image-control {
+  position: relative;
+
+  &__scroll-container {
+    position: relative;
+    z-index: 1;
+  }
+  &__controls-wrapper {
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+    z-index: 2;
+
+    button {
+      margin: 10px auto;
+      font-size: 18px;
+      width: 24px;
+      height: 24px;
+      padding-left: 0;
+      padding-right: 0;
+
+      img {
+        width: 24px;
+      }
+    }
+  }
+}

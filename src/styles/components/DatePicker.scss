@@ -1,0 +1,13 @@
+.ant-picker {
+  border-radius: 4px;
+  border-color: #b3b3b3;
+
+  &.readonly {
+    background: transparent;
+
+    input {
+      cursor: text;
+      color: $neutral-primary;
+    }
+  }
+}

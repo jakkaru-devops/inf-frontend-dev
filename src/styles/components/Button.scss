@@ -1,0 +1,98 @@
+.ant-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 15px 5px;
+  text-transform: none;
+  border-radius: 4px;
+
+  &.no-bg {
+    background: transparent;
+    &:hover,
+    &:focus {
+      background: transparent;
+    }
+    &:disabled {
+      background: transparent !important;
+    }
+  }
+  &.no-border {
+    border-color: transparent;
+    &:hover,
+    &:focus {
+      border-color: transparent;
+    }
+  }
+  &.color-primary {
+    color: $primaryColor;
+    border-color: $primaryColor;
+  }
+  &.gray {
+    background: #767676;
+    border-color: #767676;
+    color: #fff;
+
+    &:hover,
+    &:focus {
+      background: #888888;
+      border-color: #767676;
+    }
+    &:active {
+      background: #666666;
+    }
+  }
+  &.disabled,
+  &:disabled {
+    color: rgba(0, 0, 0, 0.25) !important;
+    background: #f5f5f5 !important;
+    border-color: #d9d9d9 !important;
+    text-shadow: none;
+    box-shadow: none;
+    cursor: not-allowed;
+
+    span {
+      color: rgba(0, 0, 0, 0.25) !important;
+    }
+  }
+  &:disabled.disabled-gray {
+    background: #767676 !important;
+    border-color: #767676 !important;
+    color: #fff !important;
+    cursor: not-allowed;
+
+    span {
+      color: #eee !important;
+    }
+  }
+  &.text-transform-none {
+    text-transform: none;
+  }
+  &.d-inline-block {
+    display: inline-block;
+  }
+
+  & > .anticon {
+    line-height: 0;
+  }
+  &-circle {
+    padding: 0;
+  }
+}
+
+button {
+  &.no-text-transform {
+    text-transform: none;
+  }
+}
+
+.button-white {
+  background: transparent;
+  border: 1px solid $primaryColor;
+  border-radius: 4px;
+  color: $primaryColor;
+  transition: color 0.25s, background-color 0.25s;
+}
+.button-white:hover {
+  background: $primaryColor;
+  color: #ffffff;
+}

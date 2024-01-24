@@ -1,0 +1,37 @@
+.form-item {
+	&__errors {
+		padding: 0;
+		overflow-y: hidden;
+		animation: animateErrorList .25s;
+		animation-fill-mode: forwards;
+		transform-origin: center top;
+		margin-bottom: -3px;
+
+		li {
+			color: $primaryColor;
+			font-size: 14px;
+			margin-top: 2px;
+		}
+	}
+
+	&.invalid {
+		.ant-input {
+			border-color: $primaryColorLighter;
+		}
+		.ant-select {
+			border-color: $primaryColorLighter;
+		}
+		.ant-input-number {
+			border-color: $primaryColorLighter;
+		}
+	}
+}
+
+@keyframes animateErrorList {
+	0% {
+		transform: scaleY(0);
+	}
+	100% {
+		transform: scaleY(1);
+	}
+}

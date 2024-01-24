@@ -1,0 +1,17 @@
+.catalog-external__product-groups {
+  .ant-collapse-header {
+    display: flex;
+  }
+}
+
+.catalog-external__product-group__image-img {
+  .image-wrapper {
+    position: relative;
+    background: green;
+  }
+
+  .labels-wrapper {
+    position: absolute;
+    left: 0;top: 0;right: 0;bottom: 0;
+  }
+}

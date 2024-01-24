@@ -1,0 +1,10 @@
+.ant-radio {
+	&-inner::after {
+		left: 50%;
+		top: 50%;
+		margin-left: -3.5px;
+		margin-top: -3.5px;
+		width: 7px;
+		height: 7px;
+	}
+}

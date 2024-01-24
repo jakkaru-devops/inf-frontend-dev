@@ -1,0 +1,28 @@
+.cart-delivery-address-modal {
+	max-width: 830px;
+	width: 100%;
+
+	.ant-modal {
+		&-content {
+			border-radius: 2px;
+			margin-left: 15px;
+			margin-right: 15px;
+		}
+		&-title {
+			font-size: 27px;
+			font-family: $main-font, sans-serif;
+		}
+		&-header {
+			border-bottom: none;
+		}
+		&-body {
+			padding: 10px 0 0;
+		}
+	}
+}
+.address-input[disabled] {
+	background: transparent;
+	color: #000;
+	cursor: text;
+	border-color: #d4d4d4;
+}

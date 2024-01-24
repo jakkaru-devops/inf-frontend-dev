@@ -1,0 +1,51 @@
+.address-input-group {
+  .form-group {
+    position: relative;
+
+    .ant-form-item {
+      margin-bottom: 0;
+      position: relative;
+      z-index: 1;
+    }
+    .mark-group {
+      position: absolute;
+      top: 15px;
+      right: 8px;
+      display: flex;
+      align-items: center;
+      z-index: 2;
+
+      & > * {
+        margin-left: 6px;
+        cursor: default;
+  
+        &:first-child {
+          margin-left: 0;
+        }
+      }
+
+      .required-mark {
+        color: $primaryColor;
+        font-size: 16px;
+      }
+      .question-mark {
+        font-size: 13px;
+        color: #bbb;
+        transition: color 0.25s;
+  
+        &:hover {
+          color: #a5a5a5;
+        }
+      }
+    }
+  }
+}
+
+.form-error {
+  color: $primaryColor;
+  min-height: 24px;
+  font-size: 14px;
+  line-height: 1.5;
+  transition: color 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+  clear: both;
+}

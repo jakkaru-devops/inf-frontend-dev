@@ -1,0 +1,40 @@
+.org-branch-office-list {
+	display: flex;
+	flex-wrap: wrap;
+	margin-left: -20px;
+	margin-top: -20px;
+}
+
+.org-branch-office-item {
+	border: 2px solid $primaryColor;
+	padding: 10px 15px;
+	margin-left: 20px;
+	margin-top: 20px;
+	width: 300px;
+
+	h3 {
+		line-height: 1.2;
+	}
+}
+
+.notification-circle {
+	width: 14px;
+	height: 14px;
+	border-radius: 50%;
+	background: $primaryColor;
+	color: #fff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 12px;
+}
+.btnBackCommission {
+  background: transparent;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+.iconPencilCommission {
+  width: 18px;
+  height: 18px;
+}

@@ -1,0 +1,26 @@
+.ant-modal {
+  $self: &;
+
+  margin: 15px 0 0;
+
+  &.close-icon-hidden {
+    #{$self}-close {
+      display: none;
+    }
+  }
+  &.header-hidden {
+    #{$self}-header {
+      display: none;
+    }
+  }
+  &.header-border-hidden {
+    #{$self}-header {
+      border-bottom: none;
+    }
+  }
+  &.footer-hidden {
+    #{$self}-footer {
+      display: none;
+    }
+  }
+}

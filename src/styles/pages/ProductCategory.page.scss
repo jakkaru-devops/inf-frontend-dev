@@ -1,0 +1,14 @@
+.product-category-page {
+	&__category-list {
+		margin: 0;
+		padding: 0;
+		display: table;
+		//max-height: 350px;
+		//overflow-y: auto;
+
+		li {
+			margin-bottom: 8px;
+			padding-right: 50px;
+		}
+	}
+}

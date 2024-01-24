@@ -1,0 +1,12 @@
+.juristic-subject-form {
+	&__content {
+		display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+	}
+	&.small-margin {
+		.ant-row {
+			margin-bottom: 8px;
+		}
+	}
+}

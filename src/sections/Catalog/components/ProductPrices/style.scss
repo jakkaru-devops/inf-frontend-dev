@@ -1,0 +1,58 @@
+.product-prices {
+  &__organization-inn {
+    color: $secondary-color;
+    font-size: 11px;
+  }
+  &__controls {
+    button {
+      $this: &;
+
+      width: 30px;
+      height: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: none;
+      outline: none;
+      padding: 0;
+      background: none;
+      transition: 0.25s;
+      cursor: pointer;
+
+      &.favorite-button {
+        color: #ccc;
+
+        &:hover,
+        &:focus {
+          color: #aaa;
+        }
+        &.active {
+          color: $primaryColor !important;
+        }
+      }
+      &.cart-button {
+        color: $primaryColor;
+      }
+      &.quantity-button {
+        width: 40px;
+        color: $primaryColor;
+
+        &.disabled {
+          color: #ccc;
+        }
+      }
+    }
+
+    .counter {
+      min-width: 30px;
+    }
+  }
+
+  &__previous-price {
+    text-decoration: line-through;
+    font-size: 12px;
+  }
+  &__sale-price {
+    color: $context-color;
+  }
+}

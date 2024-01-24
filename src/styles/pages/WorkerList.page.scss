@@ -1,0 +1,18 @@
+.worker-list-page {
+  .table-col {
+    &--online-status {
+      .online-marker {
+        // width: 8px;
+        // height: 8px;
+        // border-radius: 50%;
+        // background: #ccc;
+        color: #ccc;
+
+        &.active {
+          color: #1da01a;
+          // background: #1da01a;
+        }
+      }
+    }
+  }
+}

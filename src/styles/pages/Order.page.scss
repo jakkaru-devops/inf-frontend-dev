@@ -1,0 +1,137 @@
+.app-page.order-seller-side {
+	.select-product {
+		border: 1px solid #ccc;
+		border-radius: 5px;
+		transition: .3s;
+		padding: 5px;
+		text-align: left;
+
+		svg {
+			transition: .3s;
+		}
+
+		&:hover, &:focus {
+			border-color: $primaryColor;
+
+			svg {
+				color: $primaryColor;
+			}
+		}
+	}
+}
+
+.app-page.order-admin-side,
+.app-page.order-customer-side {
+	.file-list-wrapper {
+		display: flex;
+
+		&__col {
+			flex-grow: 1;
+    	flex-basis: 0;
+			border-radius: 10px;
+			border: 1px solid #ddd;
+			padding: 15px;
+			margin-left: 15px;
+
+			&:first-child {
+				margin-left: 0;
+			}
+
+			h3 {
+				border-bottom: 1px solid #ccc;
+				text-align: center;
+				padding-bottom: 5px;
+				color: #999;
+			}
+		}
+	}
+
+	.status-list {
+		padding-left: 0;
+
+		li {
+			position: relative;
+			display: table;
+
+			.item-notification {
+				position: absolute;
+				left: -15px;
+				top: 50%;
+				margin-top: -4px;
+				width: 6px;
+				height: 6px;
+				border-radius: 50%;
+				background: $primaryColor;
+			}
+		}
+	}
+}
+
+.app-page.order-customer-side {
+	.file-list-wrapper {
+		&__col {
+			border: none;
+
+			&.col-right {
+				display: flex;
+				flex-direction: column;
+				align-items: flex-end;
+				margin-top: 0;
+
+				&.content-center {
+					align-items: center;
+					padding-right: 0;
+
+					h3 {
+						text-align: center;
+					}
+				}
+
+				.text {
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					background: #EDEDED;
+					border-radius: 10px;
+					padding: 20px;
+					width: 100%;
+					cursor: pointer;
+					transition: background-color .35s, transform .15s ease-in-out;
+
+					&:hover {
+						transform: scale(1.03);
+						background: #e1e1e1;
+					}
+
+					h3 {
+						color: #000;
+						padding-bottom: 0;
+						font-size: 18px;
+					}
+					svg {
+						margin-right: 15px;
+						font-size: 25px;
+						color: $primaryColor;
+					}
+				}
+			}
+
+			h3 {
+				border: none;
+				text-align: left;
+				margin-bottom: 0;
+			}
+		}
+	}
+}
+
+.order-photo-list {
+	.ant-upload-list {
+		display: flex;
+	}
+	.ant-upload-list-picture-card-container {
+		display: block;
+		width: auto;
+		height: auto;
+	}
+}

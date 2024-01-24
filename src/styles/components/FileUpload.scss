@@ -1,0 +1,103 @@
+.file-upload {
+	$self: &;
+
+	margin-left: -10px;
+	margin-top: -10px;
+	max-width: 100%;
+
+	&--default-style {
+		#{$self}__button-wrapper {
+			button {
+				min-width: 70px;
+				max-width: 110px;
+				height: 70px;
+				font-size: 13px;
+				padding: 5px 10px;
+				white-space: normal;
+				text-align: center;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+
+				svg {
+					font-size: 14px;
+					margin-top: 2px;
+					margin-bottom: 1px;
+				}
+				span {
+					margin-left: 0 !important;
+				}
+			}
+		}
+	}
+	&--size-small {
+		margin-left: -5px;
+		margin-top: -5px;
+
+		#{$self}--default-style {
+			#{$self}__button-wrapper {
+				button {
+					min-width: 50px;
+					max-width: 90px;
+					height: 50px;
+				}
+			}
+		}
+
+		.file-item {
+			margin-left: 5px !important;
+			margin-top: 5px !important;
+
+			&__upload-progress {
+				&__text {
+					font-size: 11px;
+				}
+				&__line {
+					height: 3px;
+				}
+			}
+		}
+		.file-item__inner {
+			height: 50px;
+			max-width: 65px;
+		}
+		form {
+			margin-left: 5px;
+			margin-top: 5px;
+		}
+	}
+	&--file-list-overflow-x {
+		#{$self}__file-list {
+			overflow-x: auto;
+			flex-wrap: nowrap;
+			max-width: 100%;
+		}
+	}
+
+	&__inner {
+		max-width: 100%;
+	}
+
+	&__file-list {
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	.file-item {
+		margin-left: 10px;
+		margin-top: 10px;
+	}
+
+	form {
+		display: table;
+		margin-left: 10px;
+		margin-top: 10px;
+
+		input[type=file] {
+			position: absolute;
+			opacity: 0;
+			width: 0.01px;
+			height: 0.01px;
+		}
+	}
+}

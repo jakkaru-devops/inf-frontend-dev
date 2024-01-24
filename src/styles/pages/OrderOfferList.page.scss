@@ -1,0 +1,30 @@
+.order-offer-list-modal__hidden-content--test {
+	transform: scaleY(0);
+	transition: transform .35s;
+	transform-origin: center top;
+	overflow-y: hidden;
+
+	overflow-y: hidden;
+	animation: expandHeight .25s;
+	animation-fill-mode: forwards;
+	transform-origin: center top;
+
+	// overflow: hidden;
+	// max-height: 0;
+	// // transition: .35s;
+
+	// &.is-visible {
+	// 	// max-height: 100px;
+	// 	animation: expandHeight .35s;
+	// 	animation-fill-mode: forwards;
+	// }
+}
+
+@keyframes expandHeight {
+	0% {
+		transform: scaleY(0);
+	}
+	100% {
+		transform: scaleY(1);
+	}
+}

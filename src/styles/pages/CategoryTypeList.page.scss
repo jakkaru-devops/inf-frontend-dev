@@ -1,0 +1,18 @@
+.category-type-list {
+	&__content {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		padding-top: 50px;
+
+		a {
+			max-width: 200px;
+			width: 100%;
+
+			button {
+				width: 100%;
+			}
+		}
+	}
+}

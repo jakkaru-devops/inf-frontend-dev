@@ -1,0 +1,227 @@
+@import 'styles/vars';
+
+
+.cardProduct {
+  padding-top: 25px;
+  padding-bottom: 25px;
+
+  &__article {
+    margin-bottom: 5px;
+  }
+  &__content{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 65px;
+  }
+  &__product{
+    width: 450px;
+  }
+  &__productPhoto {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    // align-items: center;
+
+    &__no-photo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 350px;
+      background: #efefef;
+      border-radius: 5px;
+
+      img {
+        width: 200px;
+      }
+    }
+  }
+  &__photos {
+    margin-left: 20px;
+    width: 390px;
+    height: 360px;
+    cursor: pointer;
+    border: 1px solid #eee;
+    border-radius: 13px;
+  }
+  &__photo {
+    display: none;
+    width: 100%;
+    height: 100%;
+
+    &.active {
+      display: block;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+			object-fit: contain;
+			object-position: center center;
+    }
+  }
+  &__photoImg {
+    max-width: 100%;
+    height: auto;
+  }
+  &__infs {
+    width: 600px;
+  }
+  &__reviews{
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -7px;
+  }
+  &__review{
+    margin-left: 7px;
+  }
+  &__reviewIcon{
+    &.active{
+      path{
+        fill:$warning-color;
+        stroke: $warning-color;
+      }
+    }
+  }
+  &__revLink{
+    display: block;
+    margin-left: 20px;
+    font-size: 14px;
+    line-height: 14px;
+    color: $border-base;
+  }
+  &__revBlock {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  &__btnBlock {
+    margin-bottom: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    button {
+      height: 38px;
+      border-radius: 4px;
+    }
+    input {
+      height: 38px;
+    }
+  }
+  &__btn_ml {
+    margin-left: 16px;
+  }
+  &__btns {
+    margin-top: -10px;
+  }
+  &__btn {
+    cursor: pointer;
+    margin-top: 10px;
+    width: 70px;
+    height: 70px;
+    border: 1px solid #eee;
+    transition: border-color .3s;
+    border-radius: 13px;
+    display: flex;
+    overflow: hidden;
+
+    &:hover, &:focus {
+      border-color: #ccc;
+    }
+    &.active {
+      border-color: $primaryColor;
+    }
+
+    img {
+      width: 100%;
+			height: 100%;
+			object-fit: cover;
+			object-position: center center;
+    }
+  }
+  &__inputNumber {
+    margin-left: 10px;
+  }
+  &__favorite {
+    margin-left: 14px;
+    font-size: 26px;
+
+    &.active {
+      color: $primaryColor;
+    }
+  }
+  &__descTitle {
+    color: $neutral-primary;
+  }
+  &__text {
+    margin-top: 7px;
+    line-height: 1.3;
+  }
+  &__descList {
+    margin-top: 7px;
+    display: flex;
+    font-size: 14px;
+
+    &__col {
+      &:first-child {
+        margin-right: 5px;
+      }
+    }
+    li {
+      line-height: 1.3;
+    }
+  }
+  &__img {
+    margin-top: 2px;
+  }
+  &__link {
+    display: block;
+    margin-top: 20px;
+    color: $warning-color;
+    transition: 0.3s;
+    &:hover{
+      color: $warning-color-hover;
+    }
+  }
+  &__other{
+    margin-top: 46px;
+  }
+}
+
+.product-image-modal {
+  .ant-modal-content {
+    position: relative;
+
+    .change-slide {
+      position: absolute;
+      top: 0;
+      width: 50px;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: background-color .3s;
+      user-select: none;
+
+      &:hover, &:focus {
+        background: rgba(0,0,0,.05);
+      }
+      &.prev {
+        right: 100%;
+      }
+      &.next {
+        left: 100%;
+      }
+
+      svg {
+        color: #fff;
+        font-size: 30px;
+        transform: scaleY(1.4);
+      }
+    }
+  }
+}

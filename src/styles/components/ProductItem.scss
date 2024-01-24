@@ -1,0 +1,224 @@
+.product-item {
+  $productItem: &;
+
+  width: 200px;
+  margin-left: 10px;
+  margin-top: 10px;
+
+  &__inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 12px;
+    text-align: left;
+    position: relative;
+    transition: 0.3s;
+    text-decoration: none;
+    color: $neutral-primary;
+    border-radius: 13px;
+    border: 2px solid transparent;
+
+    &:hover {
+      border-color: $neutral-secondary;
+      color: $neutral-primary;
+    }
+  }
+  .col {
+    margin-left: 0;
+    margin-right: 0;
+
+    &-right {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+  }
+  &__img {
+    width: 100%;
+    height: 170px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-position: center center;
+      object-fit: contain;
+    }
+
+    &--no-photo {
+      background: #efefef;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 5px;
+
+      img {
+        width: auto;
+        height: 90px;
+      }
+    }
+  }
+  &__content-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+  &__title {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #525252;
+    text-decoration: none;
+    line-height: 1.3;
+    word-break: break-word;
+  }
+  &__article {
+    font-size: 13px;
+    font-weight: 300;
+    word-break: break-word;
+    line-height: 1;
+    margin-top: 4px;
+  }
+  &__manufacturer {
+    font-size: 13px;
+    word-break: break-word;
+    line-height: 1;
+    margin-top: 4px;
+  }
+  &__min-price {
+    font-size: 13px;
+    font-weight: 500;
+    margin-top: 8px;
+    text-transform: lowercase;
+    color: #525252;
+  }
+  &__params {
+    margin-left: 0;
+    margin-top: 8px;
+    padding: 0;
+
+    & > li {
+      color: $neutralRegular;
+      font-size: 13px;
+      line-height: 1.2;
+    }
+  }
+  &__button-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;
+    width: 100%;
+    margin-top: 10px;
+  }
+  &__quantity-control {
+    margin-right: 10px;
+    max-width: 60px;
+
+    &.layout-tile {
+      min-width: 55px;
+      margin-right: 0;
+      height: 100%;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+
+      .ant-input-number {
+        &-handler {
+          &-wrap {
+            // border-left-color: transparent;
+            width: 17px;
+          }
+
+          border-radius: 0;
+          background: transparent !important;
+          // border-top-color: transparent;
+
+          svg {
+            fill: $primaryColor !important;
+          }
+        }
+        &-input-wrap {
+          height: 100%;
+
+          input {
+            height: 100%;
+          }
+        }
+      }
+    }
+  }
+  &__button {
+    width: 100%;
+    background-repeat: no-repeat;
+    font-size: 13px;
+    border-radius: 4px;
+    text-transform: none;
+    height: 38px;
+
+    &.layout-tile {
+      width: calc(100% - 55px);
+    }
+    &--prices {
+      width: 100% !important;
+      border-color: $primaryColor;
+    }
+  }
+  &__favorite-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 26px;
+  }
+
+  &.layout-row {
+    width: 100%;
+
+    #{$productItem}__inner {
+      flex-direction: row;
+      width: 100%;
+      flex: 1;
+    }
+    #{$productItem}__img {
+      width: 150px;
+      height: 150px;
+
+      img {
+        width: auto;
+      }
+    }
+    .col {
+      &-right {
+        margin-left: 20px;
+        flex: 1;
+      }
+    }
+    #{$productItem}__title {
+      margin-top: 0;
+      justify-content: flex-start;
+      text-align: left;
+      min-height: auto;
+    }
+    #{$productItem}__content-wrapper {
+      flex: 1;
+      flex-direction: row;
+      justify-content: space-between;
+      text-align: left;
+    }
+    #{$productItem}__button-wrapper {
+      justify-content: flex-end;
+      align-self: flex-end;
+      width: auto;
+    }
+    #{$productItem}__button {
+      width: auto;
+      margin-top: 0;
+    }
+    #{$productItem}__favorite-button {
+      top: 10px;
+      right: 10px;
+    }
+  }
+}

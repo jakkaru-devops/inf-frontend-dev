@@ -1,0 +1,12 @@
+.user-settings-page {
+	#{$pageTop} {
+		padding-bottom: 0;
+	}
+	.page-content-inner {
+		padding: 0px 30px;
+	}
+
+	.ant-form-item-control-input {
+		min-height: auto;
+	}
+}

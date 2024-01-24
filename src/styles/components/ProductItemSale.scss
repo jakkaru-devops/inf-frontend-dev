@@ -1,0 +1,81 @@
+.saleCardProduct-info {
+  &__price {
+    display: flex;
+    max-height: 135px;
+    column-gap: 15px;
+  }
+  &__newPrice {
+    font-size: 35px;
+    font-weight: 700;
+    line-height: 1.5;
+  }
+  &__previousPrice {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.5;
+    display: flex;
+    align-items: center;
+  }
+  &__sellerInf {
+    display: flex;
+  }
+  &__sellerInf {
+    display: flex;
+    flex-direction: column;
+  }
+  button {
+    width: 200px;
+  }
+  .sale-product-item {
+    &__button-wrapper {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    &__button {
+      background-color: $primaryColor;
+      color: #ffffff;
+      border-radius: 10px;
+      transition: background 0.25s;
+
+      &:hover {
+        background: $primaryColorLighter;
+      }
+    }
+    &__counter {
+      width: 105px;
+    }
+  }
+
+  .edit-wrapper {
+    width: 430px;
+    justify-content: space-around;
+    button {
+      width: 208px;
+    }
+  }
+}
+.addSaleProduct-form {
+  &__searchCatalog {
+    width: 260px;
+  }
+}
+.product-sale__sidebar {
+  width: 210px;
+}
+.star-form {
+  color: $primaryColor;
+}
+.filter-sale__list {
+  .ant-switch-handle::before {
+    content: url('/img/icons/switch-rows.svg');
+    width: 20px;
+    height: 20px;
+  }
+}
+.filter-sale__table {
+  .ant-switch-handle::before {
+    content: url('/img/icons/switch-table.svg');
+    width: 20px;
+    height: 20px;
+  }
+}

@@ -1,0 +1,30 @@
+@import 'styles/vars';
+
+
+.order-offer {
+	.seller {
+		font-size: 14px;
+		margin-bottom: 10px;
+	}
+
+	.select-all {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		cursor: pointer;
+		color: $primaryColor;
+
+		&:hover, &:focus {
+			text-decoration: underline;
+		}
+	}
+
+	button.start-chat {
+		padding: 0;
+		width: 35px;
+		height: 35px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+}

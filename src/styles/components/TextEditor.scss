@@ -1,0 +1,130 @@
+@import 'styles/vars';
+
+.se-wrapper-inner {
+  padding: 5px 8px !important;
+  padding-top: 10px !important;
+  min-height: auto !important;
+  line-height: 1.2 !important;
+  border-radius: 4px !important;
+  cursor: text;
+  font-family: $main-font, sans-serif;
+
+  p {
+    margin-bottom: 5px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+.se-placeholder {
+  padding-left: 8px !important;
+  padding-top: 8px !important;
+  padding-right: 8px !important;
+  padding-bottom: 0 !important;
+}
+.se-resizing-bar {
+  display: none !important;
+}
+.se-toolbar {
+  display: none !important;
+}
+
+.sun-editor {
+  border-radius: 4px;
+  border-color: #b3b3b3;
+}
+
+
+.text-editor {
+  $editor: &;
+
+  &.editable-no-border {
+    #{$editor}__editable-wrapper {
+      border: none;
+    }
+  }
+
+  &__toolbar {
+    display: flex;
+    margin-bottom: 5px;
+
+    button {
+      margin-right: 5px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+  &__editable-wrapper {
+    border: 1px solid #ccc;
+    padding: 0 8px;
+    max-height: 92px;
+    overflow-y: auto;
+    height: 100%;
+    // display: flex;
+    // align-items: center;
+    cursor: text;
+    position: relative;
+  }
+  &__editable {
+    padding-bottom: 1px;
+    font-size: 13px;
+    line-height: 1;
+    overflow: hidden;
+    width: 100%;
+
+    p {
+      margin-top: 1px;
+      margin-bottom: 4px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+  &__suffix {
+    position: sticky;
+    bottom: 0;
+    right: 0;
+  }
+}
+
+.textarea {
+  &-wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
+    position: relative;
+    // max-height: 92px;
+    overflow: hidden;
+  }
+
+  word-break: break-word;
+  padding: 5px;
+  position: relative;
+  z-index: 5;
+  width: 100%;
+
+  &:focus {
+    border: none;
+    outline: none;
+    box-shadow: none;
+    background: none;
+  }
+
+  &-placeholder {
+    position: absolute;
+    left: 0;top: 0;right: 0;bottom: 0;
+    word-break: break-word;
+    padding: 5px 10px;
+    color: #ccc;
+    z-index: 1;
+  }
+  &-suffix {
+    position: relative;
+    z-index: 10;
+  }
+}

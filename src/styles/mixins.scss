@@ -1,0 +1,9 @@
+@mixin hidden {
+  position: absolute !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  width: 0.01px !important;
+  height: 0.01px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}

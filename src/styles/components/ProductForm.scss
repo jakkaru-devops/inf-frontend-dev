@@ -1,0 +1,86 @@
+.product-form {
+  $width: 280px;
+
+  max-width: 100%;
+
+  .ant-form-item {
+    margin-bottom: 0;
+  }
+  .form-group {
+    width: $width;
+    min-width: $width;
+    padding: 10px;
+    margin: 0;
+    margin-right: 0;
+  }
+  &-branch-list {
+    &-wrapper {
+      position: relative;
+      overflow: auto;
+      flex: 1;
+      margin-left: 10px;
+      margin-top: -22px;
+    }
+
+    display: flex;
+    flex: 1;
+    overflow-x: hidden;
+    margin-left: -10px;
+
+    &-slider {
+      width: calc(100% - 30px);
+      margin: 5px 15px;
+
+      &--hidden {
+        overflow: hidden;
+        width: 0;
+      }
+    }
+  }
+  &-branch {
+    // min-width: $width;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin-left: 10px;
+
+    &-controls {
+      padding: 5px 10px 0;
+      font-size: 13.5px;
+    }
+    &--main {
+      border-color: #eee;
+      background: #eee;
+      width: 280px;
+      margin-left: 0;
+    }
+  }
+  &-add-branch {
+    border-radius: 4px;
+    border: 3px solid #ccc;
+    min-width: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 512px;
+    margin-left: 10px;
+    color: #ccc;
+    user-select: none;
+    cursor: pointer;
+    transition: .25s;
+
+    &:hover, &:focus {
+      border-color: #ddd;
+      color: #ddd;
+    }
+    .plus {
+      font-size: 100px;
+      font-weight: 200;
+      line-height: 1;
+      margin-bottom: -15px;
+    }
+    .text {
+      font-size: 18px;
+    }
+  }
+}

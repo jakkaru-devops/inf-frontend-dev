@@ -1,0 +1,98 @@
+.ant-input-number {
+  $self: &;
+
+  border-color: #bbb;
+
+  font-size: 13px;
+  width: auto;
+
+  &-handler-wrap {
+    display: none;
+  }
+
+  &.show-controls {
+    border-radius: 4px;
+    #{$self}-handler-wrap {
+      display: block;
+      opacity: 1;
+    }
+
+    &.width-small {
+      input {
+        padding-right: 18px;
+      }
+    }
+
+    input {
+      padding-right: 22px;
+    }
+  }
+  &.type-primary {
+    border-color: $primaryColor;
+
+    #{$self}-handler {
+      background: $primaryColor;
+
+      svg {
+        fill: #fff;
+      }
+    }
+  }
+  &.width-small {
+    width: 65px;
+
+    #{$self}-handler-wrap {
+      width: 15px;
+    }
+    #{$self}-handler {
+      &-up-inner,
+      &-down-inner {
+        width: auto;
+        left: 4px;
+      }
+    }
+  }
+  &.text-center {
+    input {
+      text-align: center;
+    }
+  }
+  &.no-color {
+    border-color: #525252;
+    transition: none;
+
+    #{$self}-handler {
+      &-wrap {
+        width: 17px;
+      }
+
+      background: transparent !important;
+
+      svg {
+        fill: #525252 !important;
+      }
+    }
+    &-input-wrap {
+      height: 100%;
+
+      input {
+        height: 100%;
+      }
+    }
+  }
+  &.no-bg {
+    background: transparent;
+
+    #{$self}-handler-wrap {
+      background: transparent;
+    }
+  }
+
+  input {
+    padding: 0 2px;
+
+    &::placeholder {
+      color: #999;
+    }
+  }
+}

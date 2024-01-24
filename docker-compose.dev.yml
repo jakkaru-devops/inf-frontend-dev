@@ -1,0 +1,25 @@
+version: '3.4'
+
+services:
+  inf-frontend-app:
+    image: inf-frontend-app
+    container_name: inf-frontend-app
+    build:
+      context: .
+      target: development
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./:/usr/src/app
+      - ./node_modules:/usr/src/app/node_modules
+      - type: bind
+        source: ./public
+        target: /usr/src/app/public
+    ports:
+      - $PORT:$PORT
+    command: yarn dev
+    restart: always
+    env_file: .env
+
+networks:
+  default:
+    name: inf-network

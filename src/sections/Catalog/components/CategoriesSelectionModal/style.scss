@@ -1,0 +1,19 @@
+.select-category {
+  min-width: 200px;
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  &__buttons {
+    display: flex;
+
+    button {
+      height: 38px;
+      border-radius: 4px;
+    }
+  }
+}

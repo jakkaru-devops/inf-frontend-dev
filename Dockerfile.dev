@@ -1,0 +1,7 @@
+FROM node:18.12-slim as development
+
+WORKDIR /usr/src/app
+
+RUN apt-get update
+
+COPY . .

@@ -1,0 +1,79 @@
+@import "styles/vars";
+
+.list-layout-switcher {
+  $self: &;
+
+  width: 48px;
+  height: 22px;
+  border-radius: 11px;
+  background: #d9d9d9;
+  position: relative;
+  cursor: pointer;
+
+  &__bubble {
+    z-index: 1;
+    position: absolute;
+    left: 1px;
+    top: 1px;
+    bottom: 1px;
+    width: 24px;
+    background: #fff;
+    box-shadow: 0 0 2px 0.5px rgba(0,0,0,.3);
+    border-radius: 11px;
+    transition: .2s ease-in-out;
+  }
+
+  &__options-wrapper {
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__option {
+    color: $neutral-primary;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:first-child {
+      svg {
+        margin-left: 2px;
+      }
+    }
+    &:last-child {
+      svg {
+        margin-right: 1px;
+      }
+    }
+
+    svg {
+      height: 10px;
+      transition: .2s;
+    }
+
+    &.active {
+      color: $primaryColor;
+    }
+  }
+
+  &.active {
+    #{$self}__bubble {
+      left: 23px;
+    }
+  }
+  &:active {
+    #{$self}__bubble {
+      width: 26px;
+    }
+    &.active {
+      #{$self}__bubble {
+        left: 21px;
+      }
+    }
+  }
+}

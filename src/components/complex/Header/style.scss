@@ -1,0 +1,114 @@
+@import 'styles/vars';
+
+.app-panel {
+  background: $context-color;
+  height: 44px;
+  min-height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $white-color;
+
+  a {
+    display: block;
+    color: $white-color;
+    margin-left: 15px;
+    position: relative;
+    padding-right: 17px;
+
+    svg {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      margin-top: -6px;
+      height: 12px;
+      transition: 0.3s;
+    }
+    &:hover, &:focus {
+      svg {
+        right: -2px;
+      }
+    }
+  }
+}
+
+.main-header {
+  $header-height: 58px;
+  $inner-height: 38px;
+
+  width: 100%;
+  height: $header-height;
+  min-height: $header-height;
+  background: $white-color;
+  border-bottom: 1px solid $border-secondary-color;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  &, a {
+    color: $primary-color;
+  }
+
+  .container {
+    height: 100%;
+    padding: 10px 25px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+  }
+
+  &__logo-img {
+    height: 100%;
+  }
+
+  .search-catalog-input {
+    height: $inner-height;
+    margin: 0 15px;
+  }
+
+  &__custom-request {
+    height: $inner-height;
+
+    button {
+      height: 100%;
+      border-color: $context-color;
+      border-radius: 4px;
+      padding: 10px 12px;
+      text-transform: none;
+    }
+    svg {
+      margin-right: 5px;
+      color: $context-color;
+    }
+  }
+
+  &__item {
+    margin-left: 25px;
+    min-height: 28px;
+    display: flex;
+    align-items: center;
+
+    &.ant-select {
+      margin-left: 14px;
+      margin-right: -11px;
+    }
+  }
+
+  .link {
+    svg {
+      height: 22px;
+    }
+
+    &:hover, &:focus {
+      color: $context-color;
+    }
+    &.link-text {
+      display: flex;
+    }
+    &.link-image {
+      display: none;
+    }
+  }
+}

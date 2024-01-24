@@ -1,0 +1,61 @@
+/* Vars:
+   ========================================================================== */
+
+// Font
+$main-font: 'Inter', sans-serif;
+$main-font-size: 14px;
+$main-font-weight: 400;
+$main-line-height: 1.2;
+
+// wrapper width
+$wrapperWidth: 1210px;
+$wrapperMiddleWidth: 1150px;
+$wrapperLittleWidth: 600px;
+$containerExtraSmallWidth: 300px;
+
+$desktop-width : 1280px;
+$sm-desktop-width: 1024px;
+$tablet-width: 768px;
+$desktopWidth : 1280px;
+$smDesktopWidth : 1024px;
+$tableWidth : 768px;
+$smTableWidth : 640px;
+$phoneWidth : 480px;
+$smPhoneWidth : 320px;
+
+/*
+ All colors taken from:
+ https://github.com/vedees/uimini
+*/
+
+// Colors
+$primary-color: #182F35;
+$secondary-color: #67797B;
+$context-color: #E6332A;
+$context-secondary-color: #FFE8E7;
+$border-color: #B3B3B3;
+$border-secondary-color: #EAEAEA;
+$white-color: #FFFFFF;
+$main-bg-color: #EEF1F5;
+$light-gray-color: #eeeeee;
+
+// Main color
+$danger-color : linear-gradient(135deg, #E6332A 0%, #C00000 100%);
+$primaryColor: #E6332A;
+$primaryColorLighter: #f26052;
+$warning-color : #E6332A;
+$warning-color-hover : #d63027;
+$yellow: #FFB800;
+
+// Neutral Color
+$neutral-primary : #2E2E2E;
+$neutralRegular : #606266;
+$neutral-secondary : #EDEDED;
+
+// Border Color
+$border-base  : #767676;
+
+// Classes
+$page: '.app-page';
+$pageTop: $page + '__top';
+$pageContent: $page + '__content';

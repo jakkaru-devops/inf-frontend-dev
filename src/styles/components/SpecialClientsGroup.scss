@@ -1,0 +1,34 @@
+.special-clients-group {
+  margin-bottom: 15px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+  &__title {
+    display: table;
+
+    &-inner {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+    img {
+      margin-left: 10px;
+      width: 15px;
+      transition: .15s;
+      user-select: none;
+
+      &.active {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}
+
+.customer-contract {
+  margin-bottom: 10px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}

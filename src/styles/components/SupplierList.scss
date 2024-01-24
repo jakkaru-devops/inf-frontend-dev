@@ -1,0 +1,33 @@
+.suppliersList {
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 20px;
+    margin-bottom: 12px;
+  }
+  &__description {
+    max-width: 614px;
+    font-size: 14px;
+    line-height: 1.1;
+  }
+  &__counter {
+    display: flex;
+    align-items: center;
+    width: 186px;
+  }
+  &__table {
+    max-width: 500px;
+  }
+  &__button {
+    border: none;
+    background: none;
+    box-shadow: none;
+    font-size: 13px;
+    line-height: 1.2;
+    color: $primaryColor;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-left: 20px;
+  }
+}

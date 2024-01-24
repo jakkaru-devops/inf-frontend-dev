@@ -1,0 +1,23 @@
+.ant-notification {
+	&-topRight {
+		top: 70px !important;
+	}
+	&-notice {
+		background: rgba(255,255,255,.75);
+		width: 330px;
+		padding: 12px 20px;
+
+		&-message {
+			margin-left: 4px !important;
+			color: #000;
+			line-height: 1.3 !important;
+		}
+		&-description {
+			margin-left: 4px !important;
+			color: #000;
+		}
+		&-close {
+			top: 12px;
+		}
+	}
+}

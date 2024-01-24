@@ -1,0 +1,61 @@
+.attachment-modal {
+  .ant-modal {
+    &-close {
+      display: none;
+    }
+    &-body {
+      padding: 15px;
+    }
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 15px;
+  }
+  &__title {
+    font-size: 16px;
+    word-break: break-word;
+  }
+  &__controls {
+    display: flex;
+    background: rgba(0,0,0,.4);
+    border-radius: 3px;
+    padding: 3px;
+
+    button {
+      background: transparent;
+      border: none;
+      margin-left: 4px;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      border-radius: 3px;
+      transition: .25s;
+      user-select: none;
+
+      &:hover, &:focus {
+        background: rgba(255,255,255,.12);
+      }
+      &:active {
+        background: rgba(255,255,255,.22);
+      }
+      &:first-child {
+        margin-left: 0;
+      }
+      &.close-button {
+        img {
+          width: 17px;
+        }
+      }
+
+      img {
+        width: 21px;
+      }
+    }
+  }
+}

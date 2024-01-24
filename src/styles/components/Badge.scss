@@ -1,0 +1,34 @@
+$height: 18px;
+
+.ant-badge {
+	$self: &;
+
+	font-size: inherit;
+
+	&.position-top-left {
+		#{$self}-count {
+			transform: translate(-50%, -40%);
+			left: 0;
+			right: auto;
+		}
+	}
+	&-count {
+		// min-width: $height;
+		// width: $height;
+		// height: $height;
+		// line-height: $height;
+		// border-radius: 50%;
+		// box-shadow: none;
+		transform: translate(50%, -40%);
+		box-shadow: 0 0 0 1px $primaryColorLighter;
+
+		&-sm {
+			font-size: 10px;
+		}
+	}
+	&-multiple-words {
+		// #{$self}-sm {
+			padding: 0 4px;
+		// }
+	}
+}

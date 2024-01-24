@@ -1,0 +1,18 @@
+version: '3.4'
+
+services:
+  inf-frontend-app:
+    image: inf-frontend-app
+    container_name: inf-frontend-app
+    build:
+      context: .
+      target: production
+    volumes:
+      - ./node_modules:/usr/src/app/node_modules
+      - type: bind
+        source: ./public
+        target: /usr/src/app/public
+    ports:
+      - $PORT:$PORT
+    restart: always
+    env_file: .env

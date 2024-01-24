@@ -1,0 +1,7 @@
+.product-sale {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 220px));
+  row-gap: 10px;
+  column-gap: 10px;
+}

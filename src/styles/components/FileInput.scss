@@ -1,0 +1,194 @@
+@import "~react-dropzone-uploader/dist/styles.css";
+
+.file-input {
+  $self: &;
+
+  border: 2px dashed transparent;
+  border-radius: 4px;
+  padding: 5px 3px;
+  margin: -5px;
+
+  &__inner {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -10px;
+    margin-top: -10px;
+    width: 100%;
+  }
+  &__file-item {
+    margin-left: 10px;
+    margin-top: 10px;
+  }
+  &__input-wrapper {
+    border: none;
+    margin: 0;
+    min-height: auto;
+    width: auto;
+    margin-left: 10px;
+    margin-top: 10px;
+  }
+
+  &__preview {
+    border-radius: 4px;
+    border: 1px solid #d1d1d1;
+    display: block;
+    height: 100%;
+    height: 70px;
+    margin-left: 10px;
+    margin-top: 10px;
+    max-width: 110px;
+    overflow: hidden;
+    position: relative;
+    user-select: none;
+    width: 100%;
+    &:hover &__delete,
+    &:focus &__delete {
+      opacity: 1;
+    }
+    &:hover &__bg,
+    &:focus &__bg {
+      opacity: 1;
+    }
+    &__name {
+      box-orient: vertical;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 600;
+      line-clamp: 2;
+      margin: 1px 18px 0 5px;
+      max-width: 90px;
+      overflow: hidden;
+      position: absolute;
+      text-overflow: ellipsis;
+      text-shadow: 0 0 2px #000;
+      white-space: nowrap;
+      z-index: 2;
+    }
+    &__status {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+    &__bg {
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      transition: opacity 0.35s;
+      z-index: 2;
+      cursor: pointer;
+    }
+    &__delete {
+      position: absolute;
+      top: 3px;
+      right: 3px;
+      cursor: pointer;
+      color: rgba(0, 0, 0, 0.6);
+      transition: color 0.25s, opacity 0.25s;
+      opacity: 0;
+      z-index: 10;
+      line-height: 0;
+      svg {
+        width: auto;
+        height: 12px;
+        position: relative;
+        z-index: 5;
+        margin: 0;
+        padding: 0;
+        line-height: 0;
+      }
+      &:hover,
+      &:focus {
+        color: rgba(0, 0, 0, 0.8);
+      }
+    }
+    &__ext {
+      position: absolute;
+      right: 3px;
+      bottom: 3px;
+      border-radius: 3px;
+      background: rgba(0, 0, 0, 0.5);
+      font-size: 12px;
+      color: #fff;
+      font-weight: 600;
+      padding: 3px 4px;
+      line-height: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
+    }
+    &__img {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      .img {
+        border-radius: 4px;
+        height: 100%;
+        object-fit: contain;
+        object-position: center center;
+        width: 100%;
+      }
+    }
+    .download-link {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 3;
+    }
+  }
+
+  &__input-button {
+    margin: 0;
+    padding: 0;
+    max-width: 110px;
+    min-width: 70px;
+    height: 70px;
+    border-radius: 4px;
+    border: 1px solid #b3b3b3;
+
+    label {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      font-size: 13px;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      white-space: normal;
+      padding: 5px 10px;
+    }
+  }
+
+  &--dropzone-active {
+    border: 2px dashed #ccc;
+  }
+  &--size-small {
+    margin-left: -5px;
+    margin-top: -5px;
+
+    #{self}__inner {
+      margin-left: -5px;
+      margin-top: -5px;
+    }
+    #{self}__file-item {
+      margin-left: 5px !important;
+		  margin-top: 5px !important;
+    }
+    .input-wrapper {
+      margin-left: 5px;
+      margin-top: 5px;
+    }
+    #{$self}__input-button {
+      height: 45px;
+      min-width: 50px;
+    }
+  }
+}

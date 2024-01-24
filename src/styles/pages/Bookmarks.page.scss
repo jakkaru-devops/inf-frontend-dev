@@ -1,0 +1,29 @@
+@import "styles/vars";
+
+
+.bookmarks{
+  padding: 35px 0;
+  &__list{
+    width: 100%;
+  }
+  &__img{
+    width: 84px;
+    height: auto;
+  }
+  &__item{
+    padding: 30px 0;
+    border-bottom: 1px solid $border-base;
+    width: 100%;
+  }
+  &__link{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  &__text{
+    margin-left: 32px;
+    display: block;
+    width: 73%;
+    text-align: left;
+  }
+}

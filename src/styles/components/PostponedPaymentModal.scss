@@ -1,0 +1,27 @@
+.postponed-payment-modal {
+  color: #525252;
+
+  &__title {
+    font-weight: 700;
+    font-size: 20px;
+    text-transform: uppercase;
+    color: $primary-color;
+  }
+
+  &__organization {
+    font-weight: 700;
+    font-size: 16px;
+    text-transform: uppercase;
+    line-height: 1.2;
+  }
+
+  &__pre-input {
+    min-width: 130px;
+  }
+
+  input {
+    width: 100px;
+    text-align: right;
+    padding-right: 5px;
+  }
+}

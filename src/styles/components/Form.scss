@@ -1,0 +1,24 @@
+.ant-form {
+	&.small-margin {
+		.ant-form-item {
+			margin-bottom: 10px;
+		}
+	}
+	&-vertical {
+		.ant-form-item {
+			&-label {
+				padding-bottom: 2px;
+			}
+		}
+	}
+
+	&-item {
+		$item: &;
+
+		&.show-error-only {
+			#{$item}-control-input {
+				@include hidden;
+			}
+		}
+	}
+}

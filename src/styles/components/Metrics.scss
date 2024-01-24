@@ -1,0 +1,46 @@
+.metrics-company {
+  margin-bottom: 50px;
+  &__rows {
+    display: grid;
+    grid-template-columns: 300px 100px 100px;
+  }
+
+  td {
+    display: flex;
+    align-items: center;
+    border: 1px solid $neutralRegular;
+    border-top: none;
+    padding-left: 10px;
+  }
+
+  th {
+    border: 1px solid $neutralRegular;
+    text-align: start;
+    padding-left: 10px;
+  }
+}
+
+.top-company {
+  &__rows {
+    display: grid;
+    grid-template-columns: 350px 140px 140px 200px;
+  }
+
+  td,
+  th {
+    display: flex;
+    border: 1px solid $neutralRegular;
+    border-top: none;
+    align-items: center;
+    text-align: start;
+    padding: 3px 10px;
+  }
+
+  th {
+    border-top: 1px solid $neutralRegular;
+  }
+}
+
+.hidden-row {
+  display: none;
+}
