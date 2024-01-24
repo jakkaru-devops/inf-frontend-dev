@@ -59,8 +59,8 @@ jobs:
       - name: Update version and repository in Helm charts
         run: |
               cd $CI_PROJECT_NAME
-              sed -i "s|appVersion:.*|appVersion: \"$IMAGE_TAG\"|" values.yaml
               cat values.yaml
+              sed -i "s|appVersion:.*|appVersion: \"$IMAGE_TAG\"|" values.yaml
               git add values.yaml
               git diff-index --quiet HEAD || git commit -m "CI: Update app version to $IMAGE_TAG"
               git push
