@@ -49,12 +49,7 @@ jobs:
       - name: Install Helm
         uses: azure/setup-helm@v1
 
-      - name: Install yq
-        run: |
-          sudo add-apt-repository ppa:rmescandon/yq -y
-          sudo apt-get update -y
-          sudo apt-get install yq -y
- 
+      
       - name: Configure Git
         run: |
           git config --global user.email "savamedvedevvv@gmail.com"
@@ -63,10 +58,21 @@ jobs:
       - name: Clone Helm repository
         run: git clone $SOURCE_REPO_ARGOCD
           
-      - name: Update version and repository in Helm charts
-        run: |
-              cd $CI_PROJECT_NAME
-              yq -i '.app.version =1.7' values.yaml       
-              git add values.yaml
-              git diff-index --quiet HEAD || git commit -m " CI: Update app version to $(echo $IMAGE_TAG) "
-              git push
+
+      - name: Set foobar to cool
+        uses: mikefarah/yq@master
+        with:
+          cmd: |
+            cd $CI_PROJECT_NAME
+            yq --inplace '.app.version =1.7' values.yaml       
+            git add values.yaml
+            git diff-index --quiet HEAD || git commit -m " CI: Update app version to $(echo $IMAGE_TAG) "
+            git push
+
+      # - name: Update version and repository in Helm charts
+      #   run: |
+      #         cd $CI_PROJECT_NAME
+      #         yq --inplace '.app.version =1.7' values.yaml       
+      #         git add values.yaml
+      #         git diff-index --quiet HEAD || git commit -m " CI: Update app version to $(echo $IMAGE_TAG) "
+      #         git push
