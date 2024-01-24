@@ -1,4 +1,7 @@
 name: Push to Yandex Cloud Container Registry
+env:
+  SOURCE_REPO_ARGOCD: https://github.com/jakkaru-devops/inf-argocd
+  IMAGE_TAG: 2
 on:
   push:
     branches: [ main ] # измените ветку по вашему выбору
@@ -12,28 +15,29 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      # # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      # - uses: actions/checkout@v2
 
-      # Runs a single command using the runners shell
-      - name: Yandex Cloud CR "Login" Action for GitHub Actions
-        uses: yc-actions/yc-cr-login@v0.1-alpha
-        with:
-          yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
-
-
-      - name: Build, tag, and push image to Yandex Cloud Container Registry
-        env:
-          CR_REGISTRY: crpn9ikb6hp5v19o9957
-          CR_REPOSITORY: inf-frontend-dev
-          IMAGE_TAG: ${{ github.sha }}
-        run: |
-          docker build -t cr.yandex/$CR_REGISTRY/$CR_REPOSITORY:$IMAGE_TAG .
-          docker push cr.yandex/$CR_REGISTRY/$CR_REPOSITORY:$IMAGE_TAG
+      # # Runs a single command using the runners shell
+      # - name: Yandex Cloud CR "Login" Action for GitHub Actions
+      #   uses: yc-actions/yc-cr-login@v0.1-alpha
+      #   with:
+      #     yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
 
 
-          - name: Checkout source code
-          uses: actions/checkout@v2
+      # - name: Build, tag, and push image to Yandex Cloud Container Registry
+      #   env:
+      #     CR_REGISTRY: crpn9ikb6hp5v19o9957
+      #     CR_REPOSITORY: inf-frontend-dev
+      #     IMAGE_TAG: ${{ github.sha }}
+      #   run: |
+      #     docker build -t cr.yandex/$CR_REGISTRY/$CR_REPOSITORY:$IMAGE_TAG .
+      #     docker push cr.yandex/$CR_REGISTRY/$CR_REPOSITORY:$IMAGE_TAG
+
+
+      
+      - name: Checkout source code
+        uses: actions/checkout@v2
         
       - name: Set up SSH
         uses: webfactory/ssh-agent@v0.5.1
@@ -49,7 +53,7 @@ jobs:
           git config --global user.name "jakkaru-devops"
 
           - name: Clone Helm repository
-            run: git clone http://jakkaru-devops:sava131097@$helm_repo/git@github.com:jakkaru-devops/inf-argocd.git
+            run: git clone $SOURCE_REPO_ARGOCD
           
           - name: Update version and repository in Helm charts
             run: |
