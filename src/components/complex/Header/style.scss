@@ -24,7 +24,8 @@
       height: 12px;
       transition: 0.3s;
     }
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       svg {
         right: -2px;
       }
@@ -45,7 +46,8 @@
   top: 0;
   z-index: 100;
 
-  &, a {
+  &,
+  a {
     color: $primary-color;
   }
 
@@ -101,7 +103,8 @@
       height: 22px;
     }
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       color: $context-color;
     }
     &.link-text {
