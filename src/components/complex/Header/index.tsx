@@ -45,7 +45,7 @@ const Header = () => {
   return (
     <Fragment>
       <div className="app-panel">
-        «Берсерк» — фэнтези-манга, автором которой является Кэнтаро Миура. Первый том был издан в 1989 году:
+        «Берсерк» — фэнтези-манга:
         <Link href={ANDROID_APP_URL}>
           Google Play <ArrowRightIcon />
         </Link>
