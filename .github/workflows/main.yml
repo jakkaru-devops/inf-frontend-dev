@@ -62,7 +62,7 @@ jobs:
         with:
           cmd: |
             cd $CI_PROJECT_NAME
-            yq -i '.app.version ="$IMAGE_TAG"' values.yaml       
+            yq -i '.app.version =$(echo $IMAGE_TAG)' values.yaml       
             
 
       - name: Update version and repository in Helm charts
