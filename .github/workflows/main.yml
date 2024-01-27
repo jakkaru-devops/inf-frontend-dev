@@ -1,4 +1,4 @@
-name: Push to Yandex Cloud Container Registry
+name: Push to Yandex Cloud Container Registry Frontend
 env:
   SOURCE_REPO_ARGOCD: https://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@github.com/jakkaru-devops/inf-argocd
   IMAGE_TAG: "3.1"
