@@ -65,7 +65,7 @@ jobs:
         with:
           cmd: |
             cd $CI_PROJECT_NAME
-            yq -i ".app.version =${{ env.GITHUB_SHA_SHORT }}" values.yaml                 
+            yq -i .app.version =${{ env.GITHUB_SHA_SHORT }}' values.yaml                 
 
       - name: Update version and repository in Helm charts
         run: |
