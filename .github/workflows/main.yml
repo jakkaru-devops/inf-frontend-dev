@@ -60,7 +60,7 @@ jobs:
         with:
           cmd: |
             cd $CI_PROJECT_NAME
-            yq -i ".app.version =${{ steps.commit.outputs.short }}" values.yaml                   
+            yq -i ".app.version |=${{ steps.commit.outputs.short }}" values.yaml                   
 
       - name: Update version and repository in Helm charts
         run: |
