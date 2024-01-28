@@ -65,11 +65,11 @@ jobs:
         with:
           cmd: |
             cd $CI_PROJECT_NAME
-            yq -i '.app.components =${{ env.GITHUB_SHA_SHORT }}' values.yaml                 
+            yq -i '.app.version = "sda21321321' values.yaml                 
 
-      - name: Update components and repository in Helm charts
+      - name: Update version and repository in Helm charts
         run: |
               cd $CI_PROJECT_NAME
               git add values.yaml
-              git diff-index --quiet HEAD || git commit -m " CI: Update app components to $(echo $IMAGE_TAG) "
+              git diff-index --quiet HEAD || git commit -m " CI: Update app version to $(echo $IMAGE_TAG) "
               git push
