@@ -51,6 +51,13 @@ jobs:
 
       - name: Clone Helm repository
         run: git clone $SOURCE_REPO_ARGOCD
+
+      - name: Get short SHA
+        run: echo "SHORT_SHA=$("${{ github.sha }}".SubString(0, 8))" >> $env:GITHUB_ENV
+      
+      - name: Print short SHA
+        run: echo "Short SHA is ${{ env.SHORT_SHA }}"
+      
           
 
       - name: Update tag version for api in Helm charts values
