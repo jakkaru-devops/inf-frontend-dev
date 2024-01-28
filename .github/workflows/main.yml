@@ -57,15 +57,14 @@ jobs:
         run: echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c 1-6)" >> $GITHUB_ENV
 
       - name: Test
-        run: echo $GITHUB_SHA_SHORT
+        run: echo ${{ env.GITHUB_SHA_SHORT }}
 
-      
       - name: Update tag version for api in Helm charts values
         uses: mikefarah/yq@master
         with:
           cmd: |
             cd $CI_PROJECT_NAME
-            yq -i ".app.version |=$(echo env.APP_VERSION)" values.yaml                   
+            yq -i ".app.version |=${{ env.GITHUB_SHA_SHORT }}" values.yaml                   
 
       - name: Update version and repository in Helm charts
         run: |
