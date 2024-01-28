@@ -52,20 +52,15 @@ jobs:
       - name: Clone Helm repository
         run: git clone $SOURCE_REPO_ARGOCD
 
-      - name: Get short SHA
-        run: echo "SHORT_SHA=$("${{ github.sha }}".SubString(0, 8))" >> $env:GITHUB_ENV
       
-      - name: Print short SHA
-        run: echo "Short SHA is ${{ env.SHORT_SHA }}"
-      
-          
-
+      - id: commit
+        uses: prompt/actions-commit-hash@v3
       - name: Update tag version for api in Helm charts values
         uses: mikefarah/yq@master
         with:
           cmd: |
             cd $CI_PROJECT_NAME
-            yq -i ".app.version =$(echo $IMAGE_TAG)" values.yaml                   
+            yq -i ".app.version =${{ steps.commit.outputs.short }}" values.yaml                   
 
       - name: Update version and repository in Helm charts
         run: |
