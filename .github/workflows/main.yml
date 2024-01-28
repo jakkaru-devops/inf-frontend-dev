@@ -61,7 +61,7 @@ jobs:
         with:
           cmd: |
             cd $CI_PROJECT_NAME
-            yq -i ".app.version |=env(APP_VERSION)" values.yaml                   
+            yq -i ".app.version |=$(echo env.APP_VERSION)" values.yaml                   
 
       - name: Update version and repository in Helm charts
         run: |
