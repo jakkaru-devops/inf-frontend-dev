@@ -1,7 +1,7 @@
 name: Push to Yandex Cloud Container Registry Frontend
 env:
   SOURCE_REPO_ARGOCD: https://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@github.com/jakkaru-devops/inf-argocd
-  IMAGE_TAG: 12312321321321321321312321321321321
+  IMAGE_TAG: ${{ github.sha }}
   CI_PROJECT_NAME: inf-argocd/HelmCharts/Development
 on:
   push:
@@ -58,7 +58,7 @@ jobs:
         with:
           cmd: |
             cd $CI_PROJECT_NAME
-            yq -i ".app.version =${IMAGE_TAG::6}" values.yaml                   
+            yq -i ".app.version =$(echo $IMAGE_TAG)" values.yaml                   
 
       - name: Update version and repository in Helm charts
         run: |
