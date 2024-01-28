@@ -61,7 +61,7 @@ jobs:
         run: echo ${{ env.GITHUB_SHA_SHORT }}
 
       - name: Update tag version for api in Helm charts values
-        uses: mikefarah/yq@master
+        uses: mikefarah/yq@v4.40.5
         with:
           cmd: |
             cd $CI_PROJECT_NAME
