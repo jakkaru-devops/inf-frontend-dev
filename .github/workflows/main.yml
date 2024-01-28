@@ -1,7 +1,6 @@
 name: Push to Yandex Cloud Container Registry Frontend
 env:
   SOURCE_REPO_ARGOCD: https://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@github.com/jakkaru-devops/inf-argocd
-  IMAGE_TAG: ${{ github.sha }}
   CI_PROJECT_NAME: inf-argocd/HelmCharts/Development
 on:
   push:
@@ -20,29 +19,35 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      # # Runs a single command using the runners shell
-      # - name: Yandex Cloud CR "Login" Action for GitHub Actions
-      #   uses: yc-actions/yc-cr-login@v0.1-alpha
-      #   with:
-      #     yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
+      - name: Set env
+        run: echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c 1-6)" >> $GITHUB_ENV
+
+      - name: Test
+        run: echo ${{ env.GITHUB_SHA_SHORT }}
+
+      # Runs a single command using the runners shell
+      - name: Yandex Cloud CR "Login" Action for GitHub Actions
+        uses: yc-actions/yc-cr-login@v0.1-alpha
+        with:
+          yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
 
 
-      # - name: Build, tag, and push image to Yandex Cloud Container Registry
-      #   env:
-      #     CR_REGISTRY: crpn9ikb6hp5v19o9957
-      #     CR_REPOSITORY: inf-frontend-dev
-      #   run: |
-      #     docker build -t cr.yandex/$CR_REGISTRY/$CR_REPOSITORY:$IMAGE_TAG .
-      #     docker push cr.yandex/$CR_REGISTRY/$CR_REPOSITORY:$IMAGE_TAG
+      - name: Build, tag, and push image to Yandex Cloud Container Registry
+        env:
+          CR_REGISTRY: crpn9ikb6hp5v19o9957
+          CR_REPOSITORY: inf-frontend-dev
+        run: |
+          docker build -t cr.yandex/$CR_REGISTRY/$CR_REPOSITORY:${{ env.GITHUB_SHA_SHORT }} .
+          docker push cr.yandex/$CR_REGISTRY/$CR_REPOSITORY:${{ env.GITHUB_SHA_SHORT }}
 
         
-      # - name: Set up SSH
-      #   uses: webfactory/ssh-agent@v0.5.1
-      #   with:
-      #       ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.5.1
+        with:
+            ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
         
-      # - name: Install Helm
-      #   uses: azure/setup-helm@v1
+      - name: Install Helm
+        uses: azure/setup-helm@v1
 
       
       - name: Configure Git
@@ -53,19 +58,12 @@ jobs:
       - name: Clone Helm repository
         run: git clone $SOURCE_REPO_ARGOCD
 
-
-      - name: Set env
-        run: echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c 1-6)" >> $GITHUB_ENV
-
-      - name: Test
-        run: echo ${{ env.GITHUB_SHA_SHORT }}
-
       - name: Update tag version for api in Helm charts values
         uses: mikefarah/yq@v4.40.5
         with:
           cmd: |
             cd $CI_PROJECT_NAME
-            yq -i .app.version =${{ env.GITHUB_SHA_SHORT }}' values.yaml                 
+            yq -i .app.version ="${{ env.GITHUB_SHA_SHORT }}"' values.yaml                 
 
       - name: Update version and repository in Helm charts
         run: |
