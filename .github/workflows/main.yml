@@ -9,7 +9,7 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  
+
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
@@ -65,11 +65,11 @@ jobs:
         with:
           cmd: |
             cd $CI_PROJECT_NAME
-            yq -i '.app.version =${{ env.GITHUB_SHA_SHORT }}' values.yaml                 
+            yq -i '.app.components =${{ env.GITHUB_SHA_SHORT }}' values.yaml                 
 
-      - name: Update version and repository in Helm charts
+      - name: Update components and repository in Helm charts
         run: |
               cd $CI_PROJECT_NAME
               git add values.yaml
-              git diff-index --quiet HEAD || git commit -m " CI: Update app version to $(echo $IMAGE_TAG) "
+              git diff-index --quiet HEAD || git commit -m " CI: Update app components to $(echo $IMAGE_TAG) "
               git push
