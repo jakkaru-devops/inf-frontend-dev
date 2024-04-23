@@ -1,6 +1,6 @@
 name: Push to Yandex Cloud Container Registry Frontend
 env:
-  SOURCE_REPO_ARGOCD: https://${{ secrets.ACCESS_TOKEN }}@github.com/infmarket/argo-cd
+  SOURCE_REPO_ARGOCD: https://${{ secrets.ACCESS_TOKEN }}@github.com/jakkaru-devops/inf-argocd
   CI_PROJECT_NAME: argo-cd/HelmCharts/Production
 on:
   push:
