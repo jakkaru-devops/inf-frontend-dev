@@ -41,13 +41,6 @@ pipeline {
                 }
             }
         }
-
-        stage('dockerImage') {
-            steps {
-                echo "$dockerImage"
-            }
-        }
-
         
     }
 }
