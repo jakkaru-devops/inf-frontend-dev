@@ -29,9 +29,15 @@ pipeline {
 
         }
 
+        stage('List derictory ') {
+            steps {
+                sh "ls -la"
+            }
+        }
+
         stage('Building image') {
             steps {
-                sh "echo docker build -t $IMAGE_NAME:$IMAGE_TAG ."
+                sh "docker build -t $IMAGE_NAME:$IMAGE_TAG ."
             }
         }
         
