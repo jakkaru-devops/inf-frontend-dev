@@ -13,7 +13,7 @@ pipeline {
         CR_REGISTRY = "crpn9ikb6hp5v19o9957"
         CR_REPOSITORY = "inf-frontend-dev"
         CI_PROJECT_NAME = "CI_PROJECT_NAME"
-        SOURCE_REPO_ARGOCD = "https://${{ secrets.ACCESS_TOKEN }}@github.com/jakkaru-devops/inf-argocd"
+        SOURCE_REPO_ARGOCD = "https://github.com/jakkaru-devops/inf-argocd"
     }
 
     stages {
