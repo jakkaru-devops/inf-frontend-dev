@@ -12,6 +12,8 @@ pipeline {
         IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
         CR_REGISTRY = "crpn9ikb6hp5v19o9957"
         CR_REPOSITORY = "inf-frontend-dev"
+        CI_PROJECT_NAME = "CI_PROJECT_NAME"
+        SOURCE_REPO_ARGOCD = "https://${{ secrets.ACCESS_TOKEN }}@github.com/jakkaru-devops/inf-argocd"
     }
 
     stages {
@@ -28,6 +30,19 @@ pipeline {
                 git branch: 'main', credentialsId: 'ssh-key-jenkins-github', url: 'https://github.com/jakkaru-devops/inf-frontend-dev.git'
             }
 
+        }
+
+
+        stage('Short tag for Docker') {
+            steps {
+               echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c 1-6)" >> $GITHUB_ENV
+            }
+        }
+
+        stage('Test GITHUB_SHA_SHORT') {
+            steps {
+               echo "echo ${{ env.GITHUB_SHA_SHORT }}"
+            }
         }
 
         stage('Сборка') {
