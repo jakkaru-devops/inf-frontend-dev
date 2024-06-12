@@ -10,7 +10,6 @@ pipeline {
         DOCKER_PASS = 'dockerhub'
         IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
         IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
-        JENKINS_API_TOKEN = credentials("JENKINS_API_TOKEN")
         CR_REGISTRY = "crpn9ikb6hp5v19o9957"
         CR_REPOSITORY = "inf-frontend-dev"
     }
