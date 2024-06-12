@@ -15,7 +15,7 @@ pipeline {
         CR_REPOSITORY = "inf-frontend-dev"
         CI_PROJECT_NAME = "CI_PROJECT_NAME"
         SOURCE_REPO_ARGOCD = "https://github.com/jakkaru-devops/inf-argocd"
-        dockerImage = ''
+        DOCKER_IMAGE = ""
     }
 
     stages {
@@ -37,7 +37,7 @@ pipeline {
         stage('Building image') {
             steps{
                 script {
-                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                    DOCKER_IMAGE = docker.build registry + ":$BUILD_NUMBER"
                 }
             }
         }
