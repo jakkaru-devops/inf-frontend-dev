@@ -32,19 +32,6 @@ pipeline {
 
         }
 
-
-        stage('Short tag for Docker') {
-            steps {
-               echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c 1-6)" >> $GITHUB_ENV
-            }
-        }
-
-        stage('Test GITHUB_SHA_SHORT') {
-            steps {
-               echo "echo ${{ env.GITHUB_SHA_SHORT }}"
-            }
-        }
-
         stage('Сборка') {
             steps {
                 echo 'Выполняем команды для сборки'
