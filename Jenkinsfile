@@ -4,18 +4,13 @@ pipeline {
     }
 
     environment {
-        APP_NAME = "complete-prodcution-e2e-pipeline"
         RELEASE = "1.0.0"
         DOCKER_USER = "dmancloud"
         DOCKER_PASS = 'dockerhub'
-        BUILD_NUMBER = '1213123213'
-        IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
         IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
-        CR_REGISTRY = "crpn9ikb6hp5v19o9957"
+        CR_REGISTRY = "cr.yandex/crpn9ikb6hp5v19o9957"
         CR_REPOSITORY = "inf-frontend-dev"
-        CI_PROJECT_NAME = "CI_PROJECT_NAME"
-        SOURCE_REPO_ARGOCD = "https://github.com/jakkaru-devops/inf-argocd"
-        DOCKER_IMAGE = ""
+        IMAGE_NAME = "${CR_REGISTRY}" + "/" + "${CR_REPOSITORY}"
     }
 
     stages {
@@ -35,10 +30,8 @@ pipeline {
         }
 
         stage('Building image') {
-            steps{
-                script {
-                    DOCKER_IMAGE = docker.build.registry + ":$BUILD_NUMBER"
-                }
+            steps {
+                sh "echo docker build -t $IMAGE_NAME:$IMAGE_TAG ."
             }
         }
         
