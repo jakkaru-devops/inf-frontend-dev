@@ -47,7 +47,7 @@ pipeline {
                     def registryUrl = 'cr.yandex/crpn9ikb6hp5v19o9957'
 
                     // Авторизация в Yandex Cloud Container Registry
-                    docker.withRegistry(registryUrl,  credentialsId: 'iam_token') {
+                    withDockerRegistry(credentialsId: 'iam_token', toolName: 'docker') {
 
                         sh "sudo docker build -t $IMAGE_NAME:$IMAGE_TAG ."
                         sh "docker push $IMAGE_NAME:$IMAGE_TAG"
