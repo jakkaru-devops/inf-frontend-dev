@@ -35,9 +35,26 @@ pipeline {
             }
         }
 
-        stage('Building image') {
+        // stage('Building image') {
+        //     steps {
+        //         sh "sudo docker build -t $IMAGE_NAME:$IMAGE_TAG ."
+        //     }
+        // }
+        stage('Build and push Docker image') {
             steps {
-                sh "sudo docker build -t $IMAGE_NAME:$IMAGE_TAG ."
+                script {
+                    // Получение учетных данных Yandex Cloud Container Registry
+                    def registryCredentialsId = 'iam_token'
+                    def registryUrl = 'cr.yandex/crpn9ikb6hp5v19o9957'
+
+                    // Авторизация в Yandex Cloud Container Registry
+                    docker.withRegistry(registryUrl, registryCredentialsId) {
+                        // Здесь соберите и отправьте свой Docker-образ
+                        // Например:
+                        sh "sudo docker build -t $IMAGE_NAME:$IMAGE_TAG ."
+                        sh "docker push $IMAGE_NAME:$IMAGE_TAG"
+                    }
+                }
             }
         }
 
