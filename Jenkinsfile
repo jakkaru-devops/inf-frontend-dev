@@ -37,6 +37,12 @@ pipeline {
 
         // stage('Building image') {
         //     steps {
+        //         sh "docker login --username oauth  --password ${env.dockerHubPassword} cr.yandex"
+        //     }
+        // }
+
+         // stage('Building image') {
+        //     steps {
         //         sh "sudo docker build -t $IMAGE_NAME:$IMAGE_TAG ."
         //     }
         // }
@@ -44,18 +50,19 @@ pipeline {
             steps {
                 script {
                     // Получение учетных данных Yandex Cloud Container Registry
-                    def registryUrl = 'cr.yandex/crpn9ikb6hp5v19o9957'
+                    def registryCredentialsId = 'docker'
+                    def registryUrl = 'cr.yandex'
 
                     // Авторизация в Yandex Cloud Container Registry
-                    withDockerRegistry(credentialsId: 'docker', toolName: 'docker') {
-
+                    docker.withRegistry(registryUrl, credentialsId: 'docker') {
+                        // Здесь соберите и отправьте свой Docker-образ
+                        // Например:
                         sh "sudo docker build -t $IMAGE_NAME:$IMAGE_TAG ."
                         sh "docker push $IMAGE_NAME:$IMAGE_TAG"
                     }
                 }
             }
         }
-
 
         stage('Cleanup Artifacts') {
             steps {
