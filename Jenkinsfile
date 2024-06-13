@@ -54,7 +54,7 @@ pipeline {
                     def registryUrl = 'cr.yandex'
 
                     // Авторизация в Yandex Cloud Container Registry
-                    docker.withRegistry(registryUrl, credentialsId: 'docker') {
+                    withDockerRegistry(registryUrl, credentialsId: 'docker') {
                         // Здесь соберите и отправьте свой Docker-образ
                         // Например:
                         sh "sudo docker build -t $IMAGE_NAME:$IMAGE_TAG ."
