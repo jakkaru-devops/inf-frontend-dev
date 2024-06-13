@@ -40,6 +40,12 @@ pipeline {
                 sh "sudo docker build -t $IMAGE_NAME:$IMAGE_TAG ."
             }
         }
-        
+
+
+        stage('Cleanup Artifacts') {
+            steps {
+                sh "sudo docker rmi $IMAGE_NAME:$IMAGE_TAG"    
+            }
+        }   
     }
 }
