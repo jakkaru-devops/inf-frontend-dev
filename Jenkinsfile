@@ -44,11 +44,10 @@ pipeline {
             steps {
                 script {
                     // Получение учетных данных Yandex Cloud Container Registry
-                    def registryCredentialsId = credentialsId: 'iam_token'
                     def registryUrl = 'cr.yandex/crpn9ikb6hp5v19o9957'
 
                     // Авторизация в Yandex Cloud Container Registry
-                    docker.withRegistry(registryUrl, registryCredentialsId) {
+                    docker.withRegistry(registryUrl,  credentialsId: 'iam_token') {
 
                         sh "sudo docker build -t $IMAGE_NAME:$IMAGE_TAG ."
                         sh "docker push $IMAGE_NAME:$IMAGE_TAG"
