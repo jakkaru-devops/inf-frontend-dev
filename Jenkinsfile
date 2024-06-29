@@ -24,7 +24,7 @@ pipeline {
     
         stage("Checkout from SCM"){
             steps {
-                git branch: 'main', credentialsId: 'ssh-key-jenkins-github', url: 'https://github.com/jakkaru-devops/inf-frontend-dev.git'
+                git branch: 'main', credentialsId: 'jenkins-github', url: 'https://github.com/jakkaru-devops/inf-frontend-dev.git'
             }
 
         }
