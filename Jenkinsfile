@@ -35,38 +35,27 @@ pipeline {
             }
         }
 
-        // stage('Building image') {
-        //     steps {
-        //         sh "docker login --username oauth  --password ${env.dockerHubPassword} cr.yandex"
-        //     }
-        // }
-
-         // stage('Building image') {
-        //     steps {
-        //         sh "sudo docker build -t $IMAGE_NAME:$IMAGE_TAG ."
-        //     }
-        // }
         stage('Build and push Docker image') {
             steps {
                 script {
-                    // Получение учетных данных Yandex Cloud Container Registry
-                    def registryCredentialsId = 'docker'
-                    def registryUrl = 'cr.yandex'
+                    echo 'Building Image ...'
+                    sh "sudo docker build -t 51.250.111.109:8081/:$IMAGE_TAG ."
 
-                    // Авторизация в Yandex Cloud Container Registry
-                    withDockerRegistry(registryUrl, credentialsId: 'docker') {
-                        // Здесь соберите и отправьте свой Docker-образ
-                        // Например:
-                        sh "sudo docker build -t $IMAGE_NAME:$IMAGE_TAG ."
-                        sh "docker push $IMAGE_NAME:$IMAGE_TAG"
+                    echo 'Pushing image to docker hosted rerpository on Nexus'
+
+
+                    withCredentials([usernamePassword(credentialsId: 'nexus', passwordVariable: 'PSW', usernameVariable: 'USER')]){
+                            sh "echo ${PSW} | docker login -u ${USER} --password-stdin 51.250.111.109:8081"
+                            sh "docker push 51.250.111.109:8081/sanskriti-portfolio:$IMAGE_TAG"
                     }
+            
                 }
             }
         }
 
         stage('Cleanup Artifacts') {
             steps {
-                sh "sudo docker rmi $IMAGE_NAME:$IMAGE_TAG"    
+                sh "sudo docker rmi 51.250.111.109:8081/:$IMAGE_TAG"    
             }
         }   
     }
