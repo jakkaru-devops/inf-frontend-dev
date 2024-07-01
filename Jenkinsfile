@@ -40,11 +40,11 @@ pipeline {
 
                     withCredentials([usernamePassword(credentialsId: 'nexus', passwordVariable: 'PSW', usernameVariable: 'USER')]){
                             echo 'Building Image ...'
-                            sh "echo ${PSW} | docker login -u ${USER} --password-stdin 51.250.111.109:8081"
-                            
+                            sh "echo ${PSW} | docker login -u ${USER} --password-stdin 51.250.111.109:8082"
+
                             echo 'Pushing image to docker hosted rerpository on Nexus'
-                            sh "sudo docker build -t -S 51.250.111.109:8081/:$IMAGE_TAG ."
-                            sh "docker push 51.250.111.109:8081/sanskriti-portfolio:$IMAGE_TAG"
+                            sh "sudo docker build -t -S 51.250.111.109:8082/:$IMAGE_TAG ."
+                            sh "docker push 51.250.111.109:8082/sanskriti-portfolio:$IMAGE_TAG"
                     }
             
                 }
@@ -53,7 +53,7 @@ pipeline {
 
         stage('Cleanup Artifacts') {
             steps {
-                sh "sudo docker rmi 51.250.111.109:8081/:$IMAGE_TAG"    
+                sh "sudo docker rmi 51.250.111.109:8082/:$IMAGE_TAG"    
             }
         }   
     }
