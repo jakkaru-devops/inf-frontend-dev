@@ -42,8 +42,8 @@ pipeline {
 
 
                     withCredentials([usernamePassword(credentialsId: 'nexus', passwordVariable: 'PSW', usernameVariable: 'USER')]){
-                        
-                            sh "echo ${PSW} | docker login -u ${USER} --password-stdin 51.250.111.109:8081"
+
+                            sh "echo ${PSW} | docker login -u ${USER} --password-stdin 51.250.111.109:8081/v2"
                             sh "sudo docker build -t -S 51.250.111.109:8081/:$IMAGE_TAG ."
                             sh "docker push 51.250.111.109:8081/sanskriti-portfolio:$IMAGE_TAG"
                     }
