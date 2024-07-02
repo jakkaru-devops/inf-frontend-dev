@@ -37,13 +37,12 @@ pipeline {
         stage('Build and push Docker image') {
             steps {
                 script {
-
-                    echo 'Building Image ...'
-                    sh "echo $PASSWORD | sudo -S docker build -t 158.160.19.53:8082/:$IMAGE_TAG ."
-
                     withCredentials([usernamePassword(credentialsId: 'nexus', passwordVariable: 'PSW', usernameVariable: 'USER')]){
                             sh "echo ${PSW} | docker login -u ${USER} --password-stdin 158.160.19.53:8082"
 
+                            echo 'Building Image ...'
+                            sh "echo $PASSWORD | sudo -S docker build -t 158.160.19.53:8082/:$IMAGE_TAG ."
+                            
                             echo 'Pushing image to docker hosted rerpository on Nexus'
                             sh "docker push 158.160.19.53:8082/sanskriti-portfolio:$IMAGE_TAG"
                     }
