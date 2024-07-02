@@ -23,10 +23,11 @@ pipeline {
     
         stage("Checkout from SCM"){
             steps {
-                git branch: 'main', credentialsId: 'jenkins-github', url: 'https://github.com/jakkaru-devops/inf-frontend-dev.git'
+                git branch: 'main', credentialsId: 'jenkins-github', url: 'git@github.com:jakkaru-devops/inf-frontend-dev.git'
+                sh 'docker build -t myapp .'
             }
-
         }
+
 
         stage('List derictory ') {
             steps {
@@ -37,7 +38,7 @@ pipeline {
         stage('Build and push Docker image') {
             steps {
                 script {
-                    withCredentials([usernamePassword(credentialsId: 'nexus', passwordVariable: 'PSW', usernameVariable: 'USER')]){
+                    withDockerRegistry(credentialsId: 'nexus', ) {
                             sh "echo ${PSW} | docker login -u ${USER} --password-stdin 158.160.19.53:8082"
 
                             echo 'Building Image ...'
