@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         RELEASE = "1.0.0"
+        PASSWORD = "123"
         DOCKER_USER = "dmancloud"
         DOCKER_PASS = 'dockerhub'
         IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
@@ -36,9 +37,9 @@ pipeline {
         stage('Build and push Docker image') {
             steps {
                 script {
-                    
+
                     echo 'Building Image ...'
-                    sh "sudo docker build -t 158.160.19.53:8082/:$IMAGE_TAG ."
+                    sh "echo $PASSWORD | sudo -S docker build -t 158.160.19.53:8082/:$IMAGE_TAG ."
 
                     withCredentials([usernamePassword(credentialsId: 'nexus', passwordVariable: 'PSW', usernameVariable: 'USER')]){
                             sh "echo ${PSW} | docker login -u ${USER} --password-stdin 158.160.19.53:8082"
