@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    tools {
+        nodejs 'node14'
+    }
+
     environment {
         DOCKER_ID = credentials('DOCKER_ID')
         DOCKER_PASSWORD = credentials('DOCKER_PASSWORD')
@@ -17,7 +21,6 @@ pipeline {
 
 
     stages {
-
         stage("Cleanup Workspace"){
             steps {
                 cleanWs()
@@ -39,6 +42,26 @@ pipeline {
         }
 
 
+        stage('Install Dependensice') {
+            steps {
+                sh "npm install"
+            }
+        }
+
+        stage('Trivy FS Scane Backend Project') {
+            steps {
+                sh "trivy fs --format table -o fs-report.html ."
+            }
+        }
+
+
+        stage('Trivy отчёт') {
+            steps {
+                sh "cat fs-report.html"
+            }
+        }
+
+
         stage('Docker login') {
              steps {
                  echo 'Initializing..'
@@ -53,28 +76,35 @@ pipeline {
              }
          }
 
-        // stage('Build Docker Image') {
+        stage('Build Docker Image') {
+            steps {
+                echo 'Building image..'
+                sh "docker build -t $IMAGE_NAME:$IMAGE_TAG ."
+            }
+        }
+
+
+        // stage('Trivy FS Image Scane Backend Project') {
         //     steps {
-        //         echo 'Building image..'
-        //         sh "docker build -t $IMAGE_NAME:$IMAGE_TAG ."
+        //         sh "trivy image --format table -o fs-report.html --timeout 10m  --scanners vuln  $IMAGE_NAME:$IMAGE_TAG"
         //     }
         // }
 
 
-        // stage('Publish Docker Image to Yandex Cloud') {
-        //     steps {
-        //         echo 'Publishing image to YandexCloud..'
-        //         sh "docker push $IMAGE_NAME:$IMAGE_TAG"
-        //     }
-        // }
+        stage('Publish Docker Image to Yandex Cloud') {
+            steps {
+                echo 'Publishing image to YandexCloud..'
+                sh "docker push $IMAGE_NAME:$IMAGE_TAG"
+            }
+        }
 
 
         
-        // stage('Cleanup Docker Image') {
-        //     steps {
-        //         sh "sudo docker rmi $IMAGE_NAME:$IMAGE_TAG "    
-        //     }
-        // }   
+        stage('Cleanup Docker Image') {
+            steps {
+                sh "sudo docker rmi $IMAGE_NAME:$IMAGE_TAG "    
+            }
+        }   
 
         stage("Checkout from SCM Helm Chart"){
             steps {
