@@ -106,7 +106,7 @@ pipeline {
                 dir('HelmCharts/Production') {
                     sh 'echo "Current directory: $(pwd)"'
                     sh 'ls -la'
-                    sh "yq -i '.api.version =\"${IMAGE_TAG}\"' values.yaml"
+                    sh "yq -i '.app.version =\"${IMAGE_TAG}\"' values.yaml"
                     sh "git add values.yaml"
                     sh "git commit -m 'CI: Update app version to ${IMAGE_TAG}'"
                     sh 'git branch --set-upstream-to origin/main main'
