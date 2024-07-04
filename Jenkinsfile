@@ -6,9 +6,10 @@ pipeline {
     }
 
     environment {
-        SCANNER_HOME =  tool 'sonar-scanner'
-        DOCKER_ID = credentials('DOCKER_ID')
-        DOCKER_PASSWORD = credentials('DOCKER_PASSWORD')
+        // SCANNER_HOME =  tool 'sonar-scanner'
+        DOCKER_ID_NEXUS = credentials('DOCKER_ID')
+        DOCKER_PASSWORD_NEXUS = credentials('DOCKER_PASSWORD_NEXUS')
+        NEXUS_URL = credentials('NEXUS_URL')
         GITHUB_TOKEN = credentials('GITHUB_TOKEN')
         RELEASE = "1.0.0"
         IMAGE_TAG = "${BUILD_NUMBER}"
@@ -43,11 +44,11 @@ pipeline {
         }
 
 
-        stage('Install Dependensice') {
-            steps {
-                sh "npm install"
-            }
-        }
+        // stage('Install Dependensice') {
+        //     steps {
+        //         sh "npm install"
+        //     }
+        // }
 
         stage('Trivy FS Scane Frontend Project') {
             steps {
@@ -62,13 +63,13 @@ pipeline {
             }
         }
 
-        stage('SonaQube Scanner Backend') {
-            steps {
-                withSonarQubeEnv('sonar') {
-                    sh "$SCANNER_HOME/bin/sonar-scanner -Dsonar.projectKey=INF-FRONTEND -Dsonar.projectName=INF-FRONTEND"
-                }
-            }
-        }
+        // stage('SonaQube Scanner Backend') {
+        //     steps {
+        //         withSonarQubeEnv('sonar') {
+        //             sh "$SCANNER_HOME/bin/sonar-scanner -Dsonar.projectKey=INF-FRONTEND -Dsonar.projectName=INF-FRONTEND"
+        //         }
+        //     }
+        // }
 
 
         stage('Docker login') {
@@ -76,21 +77,17 @@ pipeline {
                  echo 'Initializing..'
                  echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
                  echo "Current branch: ${env.BRANCH_NAME}"
-                //  sh 'echo $DOCKER_PASSWORD | docker login \
-                //     --username $DOCKER_ID \
-                //     --password --password-stdin \
-                //     cr.yandex'
-                 sh 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_ID --password-stdin cr.yandex'
+                 sh 'echo $DOCKER_PASSWORD_NEXUS | docker login -u $DOCKER_ID_NEXUS --password-stdin $NEXUS_URL'
 
              }
          }
 
-        stage('Build Docker Image') {
-            steps {
-                echo 'Building image..'
-                sh "docker build -t $IMAGE_NAME:$IMAGE_TAG ."
-            }
-        }
+        // stage('Build Docker Image') {
+        //     steps {
+        //         echo 'Building image..'
+        //         sh "docker build -t $IMAGE_NAME:$IMAGE_TAG ."
+        //     }
+        // }
 
 
         // stage('Trivy FS Image Scane Frontend Project') {
@@ -100,58 +97,58 @@ pipeline {
         // }
 
 
-        stage('Publish Docker Image to Yandex Cloud') {
-            steps {
-                echo 'Publishing image to YandexCloud..'
-                sh "docker push $IMAGE_NAME:$IMAGE_TAG"
-            }
-        }
+        // stage('Publish Docker Image to Yandex Cloud') {
+        //     steps {
+        //         echo 'Publishing image to YandexCloud..'
+        //         sh "docker push $IMAGE_NAME:$IMAGE_TAG"
+        //     }
+        // }
 
 
         
-        stage('Cleanup Docker Image') {
-            steps {
-                sh "sudo docker rmi $IMAGE_NAME:$IMAGE_TAG "    
-            }
-        }   
+        // stage('Cleanup Docker Image') {
+        //     steps {
+        //         sh "sudo docker rmi $IMAGE_NAME:$IMAGE_TAG "    
+        //     }
+        // }   
 
-        stage("Checkout from SCM Helm Chart"){
-            steps {
-                echo 'Checkout from SCM Helm Chart..'
-                git branch: 'main', credentialsId: 'jenkins-github', url: 'https://github.com/jakkaru-devops/inf-argocd.git'
-            }
-        }
+    //     stage("Checkout from SCM Helm Chart"){
+    //         steps {
+    //             echo 'Checkout from SCM Helm Chart..'
+    //             git branch: 'main', credentialsId: 'jenkins-github', url: 'https://github.com/jakkaru-devops/inf-argocd.git'
+    //         }
+    //     }
 
-        stage('List derictory fronted') {
-            steps {
-                sh "ls -la"
-            }
-        } 
+    //     stage('List derictory fronted') {
+    //         steps {
+    //             sh "ls -la"
+    //         }
+    //     } 
            
 
-        stage('Configure Git') {
-            steps {
-                sh 'git config --global user.email "savamedvedevvv@gmail.com"'
-                sh 'git config --global user.name "jakkaru-devops"'
-                sh 'git config --list --show-origin'
-                sh 'git config --global push.autoSetupRemote true'
-            }
-        }
+    //     stage('Configure Git') {
+    //         steps {
+    //             sh 'git config --global user.email "savamedvedevvv@gmail.com"'
+    //             sh 'git config --global user.name "jakkaru-devops"'
+    //             sh 'git config --list --show-origin'
+    //             sh 'git config --global push.autoSetupRemote true'
+    //         }
+    //     }
 
-       stage('Update helm chart values version backend ') {
-            steps {
-                dir('HelmCharts/Production') {
-                    sh 'echo "Current directory: $(pwd)"'
-                    sh 'ls -la'
-                    sh "yq -i '.app.version =\"${IMAGE_TAG}\"' values.yaml"
-                    sh "git add values.yaml"
-                    sh "git commit -m 'CI: Update app version to ${IMAGE_TAG}'"
-                    sh 'git branch --set-upstream-to origin/main main'
-                    sh 'git config --global credential.helper store'
-                    sh 'echo "https://${jakkaru-devops}:${GITHUB_TOKEN}@github.com" > ~/.git-credentials'
-                    sh 'git push  origin main'
-                }
-            }
-        }
+    //    stage('Update helm chart values version backend ') {
+    //         steps {
+    //             dir('HelmCharts/Production') {
+    //                 sh 'echo "Current directory: $(pwd)"'
+    //                 sh 'ls -la'
+    //                 sh "yq -i '.app.version =\"${IMAGE_TAG}\"' values.yaml"
+    //                 sh "git add values.yaml"
+    //                 sh "git commit -m 'CI: Update app version to ${IMAGE_TAG}'"
+    //                 sh 'git branch --set-upstream-to origin/main main'
+    //                 sh 'git config --global credential.helper store'
+    //                 sh 'echo "https://${jakkaru-devops}:${GITHUB_TOKEN}@github.com" > ~/.git-credentials'
+    //                 sh 'git push  origin main'
+    //             }
+    //         }
+    //     }
     }
 }
