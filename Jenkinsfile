@@ -81,12 +81,12 @@ pipeline {
              }
          }
 
-        // stage('Build Docker Image') {
-        //     steps {
-        //         echo 'Building image..'
-        //         sh "docker build -t $NEXUS_URL/inf-frontend-dev:$IMAGE_TAG ."
-        //     }
-        // }
+        stage('Build Docker Image') {
+            steps {
+                echo 'Building image..'
+                sh "docker build -t $NEXUS_URL/inf-frontend-dev:$IMAGE_TAG ."
+            }
+        }
 
 
         // stage('Trivy FS Image Scane Frontend Project') {
@@ -96,20 +96,20 @@ pipeline {
         // }
 
 
-        // stage('Publish Docker Image to Yandex Cloud') {
-        //     steps {
-        //         echo 'Publishing image to YandexCloud..'
-        //         sh "docker push $NEXUS_URL/inf-frontend-dev:$IMAGE_TAG"
-        //     }
-        // }
+        stage('Publish Docker Image to Yandex Cloud') {
+            steps {
+                echo 'Publishing image to YandexCloud..'
+                sh "docker push $NEXUS_URL/inf-frontend-dev:$IMAGE_TAG"
+            }
+        }
 
 
         
-        // stage('Cleanup Docker Image') {
-        //     steps {
-        //         sh "sudo docker rmi $IMAGE_NAME:$IMAGE_TAG "    
-        //     }
-        // }   
+        stage('Cleanup Docker Image') {
+            steps {
+                sh "sudo docker rmi $IMAGE_NAME:$IMAGE_TAG "    
+            }
+        }   
 
         stage("Checkout from SCM Helm Chart"){
             steps {
