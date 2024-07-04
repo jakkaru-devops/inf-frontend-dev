@@ -78,7 +78,7 @@ pipeline {
                  echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
                  echo "Current branch: ${env.BRANCH_NAME}"
                 //  sh 'docker login -u $DOCKER_ID_NEXUS -p $DOCKER_PASSWORD_NEXUS $NEXUS_URL'
-                 sh 'docker login -u $DOCKER_ID_NEXUS -p $DOCKER_PASSWORD_NEXUS $NEXUS_URL'
+                 sh 'docker login -u admin -p 123 51.250.29.227:8090'
              }
          }
 
