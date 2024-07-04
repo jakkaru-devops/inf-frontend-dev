@@ -48,7 +48,7 @@ pipeline {
             }
         }
 
-        stage('Trivy FS Scane Backend Project') {
+        stage('Trivy FS Scane Frontend Project') {
             steps {
                 sh "trivy fs --format table -o fs-report.html ."
             }
@@ -84,7 +84,7 @@ pipeline {
         }
 
 
-        stage('Trivy FS Image Scane Backend Project') {
+        stage('Trivy FS Image Scane Frontend Project') {
             steps {
                 sh "trivy image --format cyclonedx --output simple.json --timeout 20m  --scanners vuln  $IMAGE_NAME:$IMAGE_TAG"
             }
@@ -109,9 +109,7 @@ pipeline {
         stage("Checkout from SCM Helm Chart"){
             steps {
                 echo 'Checkout from SCM Helm Chart..'
-                //git branch: 'main', credentialsId: 'jenkins-github', url: 'git@github.com:jakkaru-devops/inf-argocd.git'
                 git branch: 'main', credentialsId: 'jenkins-github', url: 'https://github.com/jakkaru-devops/inf-argocd.git'
-
             }
         }
 
