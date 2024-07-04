@@ -84,7 +84,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 echo 'Building image..'
-                sh "docker build -t $DOCKER_ID_NEXUS/$IMAGE_NAME:$IMAGE_TAG ."
+                sh "docker build -t $DOCKER_ID_NEXUS/inf-frontend-dev:$IMAGE_TAG ."
             }
         }
 
@@ -99,7 +99,7 @@ pipeline {
         stage('Publish Docker Image to Yandex Cloud') {
             steps {
                 echo 'Publishing image to YandexCloud..'
-                sh "docker push $DOCKER_ID_NEXUS/$IMAGE_NAME:$IMAGE_TAG"
+                sh "docker push $NEXUS_URL/$IMAGE_NAME:$IMAGE_TAG"
             }
         }
 
