@@ -7,7 +7,7 @@ pipeline {
 
     environment {
         // SCANNER_HOME =  tool 'sonar-scanner'
-        DOCKER_ID_NEXUS = credentials('DOCKER_ID')
+        DOCKER_ID_NEXUS = credentials('DOCKER_ID_NEXUS')
         DOCKER_PASSWORD_NEXUS = credentials('DOCKER_PASSWORD_NEXUS')
         NEXUS_URL = credentials('NEXUS_URL')
         GITHUB_TOKEN = credentials('GITHUB_TOKEN')
