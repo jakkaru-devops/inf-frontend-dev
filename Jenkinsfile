@@ -96,9 +96,9 @@ pipeline {
         // }
 
 
-        stage('Publish Docker Image to Yandex Cloud') {
+        stage('Publish Docker Image to Nexus Hub') {
             steps {
-                echo 'Publishing image to YandexCloud..'
+                echo 'Publishing image to Nexus Hub..'
                 sh "docker push $NEXUS_URL/inf-frontend-dev:$IMAGE_TAG"
             }
         }
