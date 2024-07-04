@@ -107,7 +107,7 @@ pipeline {
         
         stage('Cleanup Docker Image') {
             steps {
-                sh "sudo docker rmi $IMAGE_NAME:$IMAGE_TAG "    
+                sh "sudo docker rmi $NEXUS_URL/inf-frontend-dev:$IMAGE_TAG"    
             }
         }   
 
