@@ -63,7 +63,7 @@ pipeline {
             }
         }
 
-        stage('SonaQube Scanner Backend') {
+        stage('SonaQube Scanner Frontend') {
             steps {
                 withSonarQubeEnv('sonar') {
                     sh "$SCANNER_HOME/bin/sonar-scanner -Dsonar.projectKey=INF-FRONTEND -Dsonar.projectName=INF-FRONTEND"
@@ -89,16 +89,22 @@ pipeline {
         }
 
 
-        // stage('Trivy FS Image Scane Frontend Project') {
-        //     steps {
-        //         sh "trivy image --format cyclonedx --output simple.json --timeout 20m  --scanners vuln  $IMAGE_NAME:$IMAGE_TAG"
-        //     }
-        // }
+        stage('Trivy Image Scane Frontend Project') {
+            steps {
+                sh "trivy image --format table -o image-report.html --timeout 20m  --scanners vuln $NEXUS_URL/inf-frontend-dev:$IMAGE_TAG"
+            }
+        }
+        
+        stage('Trivy Image отчёт ') {
+            steps {
+                sh "cat image-report.html"
+            }
+        }
 
 
         stage('Publish Docker Image to Nexus Hub') {
             steps {
-                echo 'Publishing image to Nexus Hub..'
+                echo 'Publishing image to NexusHub..'
                 sh "docker push $NEXUS_URL/inf-frontend-dev:$IMAGE_TAG"
             }
         }
