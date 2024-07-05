@@ -1,5 +1,5 @@
 # Stage 1: Build
-FROM node:18.12-slim as build
+FROM node:18.12-slim AS build
 
 WORKDIR /usr/src/app
 
@@ -13,7 +13,7 @@ COPY . .
 RUN yarn build
 
 # Stage 2: Production
-FROM node:18.12-slim as production
+FROM node:18.12-slim AS production
 
 WORKDIR /usr/src/app
 
@@ -24,6 +24,6 @@ COPY .env ./
 
 RUN yarn install --production=true
 
-COPY --from=build /usr/src/app/dist ./dist
+COPY --from=build /usr/src/app/dist/dev  ./dist/dev
+CMD ["node", "dist/dev/server.js"]
 
-CMD ["yarn", "start"]
