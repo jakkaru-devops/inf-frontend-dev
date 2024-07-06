@@ -6,7 +6,7 @@ pipeline {
     }
 
     environment {
-        SCANNER_HOME =  tool 'sonar-scanner'
+        // SCANNER_HOME =  tool 'sonar-scanner'
         DOCKER_ID = credentials('DOCKER_ID')
         DOCKER_PASSWORD = credentials('DOCKER_PASSWORD')
         GITHUB_TOKEN = credentials('GITHUB_TOKEN')
@@ -62,13 +62,13 @@ pipeline {
             }
         }
 
-        stage('SonaQube Scanner Frontend') {
-            steps {
-                withSonarQubeEnv('sonar') {
-                    sh "$SCANNER_HOME/bin/sonar-scanner -Dsonar.projectKey=INF-FRONTEND -Dsonar.projectName=INF-FRONTEND"
-                }
-            }
-        }
+        // stage('SonaQube Scanner Frontend') {
+        //     steps {
+        //         withSonarQubeEnv('sonar') {
+        //             sh "$SCANNER_HOME/bin/sonar-scanner -Dsonar.projectKey=INF-FRONTEND -Dsonar.projectName=INF-FRONTEND"
+        //         }
+        //     }
+        // }
 
 
 
