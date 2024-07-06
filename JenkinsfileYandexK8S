@@ -146,21 +146,21 @@ pipeline {
             }
         }
 
-    //    stage('Update helm chart values version backend ') {
-    //         steps {
-    //             dir('HelmCharts/Production') {
-    //                 sh 'echo "Current directory: $(pwd)"'
-    //                 sh 'ls -la'
-    //                 sh "yq -i '.app.version =\"${IMAGE_TAG}\"' values.yaml"
-    //                 sh "git add values.yaml"
-    //                 sh "git commit -m 'CI: Update app version to ${IMAGE_TAG}'"
-    //                 sh 'git branch --set-upstream-to origin/main main'
-    //                 sh 'git config --global credential.helper store'
-    //                 sh 'echo "https://${jakkaru-devops}:${GITHUB_TOKEN}@github.com" > ~/.git-credentials'
-    //                 sh 'git push  origin main'
-    //             }
-    //         }
-    //     }
+       stage('Update helm chart values version backend ') {
+            steps {
+                dir('Production') {
+                    sh 'echo "Current directory: $(pwd)"'
+                    sh 'ls -la'
+                    sh "yq -i '.app.version =\"${IMAGE_TAG}\"' values.yaml"
+                    sh "git add values.yaml"
+                    sh "git commit -m 'CI: Update app version to ${IMAGE_TAG}'"
+                    sh 'git branch --set-upstream-to origin/main main'
+                    sh 'git config --global credential.helper store'
+                    sh 'echo "https://${jakkaru-devops}:${GITHUB_TOKEN}@github.com" > ~/.git-credentials'
+                    sh 'git push  origin main'
+                }
+            }
+        }
 
         // stage('Deploy To Kubernetes Helm Chart inf-project') {
         //     steps {
