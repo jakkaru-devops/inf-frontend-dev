@@ -130,7 +130,7 @@ pipeline {
             }
         }
 
-        stage('List derictory fronted') {
+        stage('List derictory frontend') {
             steps {
                 sh "ls -la"
             }
@@ -161,6 +161,12 @@ pipeline {
                 }
             }
         }
+
+        stage('List derictory Helm ') {
+            steps {
+                sh "ls -la"
+            }
+        } 
 
         // stage('Deploy To Kubernetes Helm Chart inf-project') {
         //     steps {
