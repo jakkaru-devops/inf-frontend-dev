@@ -43,11 +43,11 @@ pipeline {
         }
 
 
-        stage('Install Dependensice') {
-            steps {
-                sh "npm install"
-            }
-        }
+        // stage('Install Dependensice') {
+        //     steps {
+        //         sh "npm install"
+        //     }
+        // }
 
         stage('Trivy FS Scane Frontend Project') {
             steps {
@@ -62,66 +62,66 @@ pipeline {
             }
         }
 
-        stage('SonaQube Scanner Frontend') {
-            steps {
-                withSonarQubeEnv('sonar') {
-                    sh "$SCANNER_HOME/bin/sonar-scanner -Dsonar.projectKey=INF-FRONTEND -Dsonar.projectName=INF-FRONTEND"
-                }
-            }
-        }
+        // stage('SonaQube Scanner Frontend') {
+        //     steps {
+        //         withSonarQubeEnv('sonar') {
+        //             sh "$SCANNER_HOME/bin/sonar-scanner -Dsonar.projectKey=INF-FRONTEND -Dsonar.projectName=INF-FRONTEND"
+        //         }
+        //     }
+        // }
 
 
 
-        stage('Docker login') {
-             steps {
-                 echo 'Initializing..'
-                 echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
-                 echo "Current branch: ${env.BRANCH_NAME}"
-                //  sh 'echo $DOCKER_PASSWORD | docker login \
-                //     --username $DOCKER_ID \
-                //     --password --password-stdin \
-                //     cr.yandex'
-                 sh 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_ID --password-stdin cr.yandex'
+        // stage('Docker login') {
+        //      steps {
+        //          echo 'Initializing..'
+        //          echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
+        //          echo "Current branch: ${env.BRANCH_NAME}"
+        //         //  sh 'echo $DOCKER_PASSWORD | docker login \
+        //         //     --username $DOCKER_ID \
+        //         //     --password --password-stdin \
+        //         //     cr.yandex'
+        //          sh 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_ID --password-stdin cr.yandex'
 
-             }
-         }
+        //      }
+        //  }
 
-        stage('Build Docker Image') {
-            steps {
-                echo 'Building image..'
-                sh "docker build -t $IMAGE_NAME:$IMAGE_TAG ."
-            }
-        }
+        // stage('Build Docker Image') {
+        //     steps {
+        //         echo 'Building image..'
+        //         sh "docker build -t $IMAGE_NAME:$IMAGE_TAG ."
+        //     }
+        // }
 
 
-        stage('Trivy Image Scane Frontend Project') {
-            steps {
-                sh "trivy image --format table -o image-report.html --timeout 20m  --scanners vuln $IMAGE_NAME:$IMAGE_TAG"
-            }
-        }
+        // stage('Trivy Image Scane Frontend Project') {
+        //     steps {
+        //         sh "trivy image --format table -o image-report.html --timeout 20m  --scanners vuln $IMAGE_NAME:$IMAGE_TAG"
+        //     }
+        // }
         
         
-        stage('Trivy Image отчёт ') {
-            steps {
-                sh "cat image-report.html"
-            }
-        }
+        // stage('Trivy Image отчёт ') {
+        //     steps {
+        //         sh "cat image-report.html"
+        //     }
+        // }
 
 
-        stage('Publish Docker Image to Yandex Cloud') {
-            steps {
-                echo 'Publishing image to YandexCloud..'
-                sh "docker push $IMAGE_NAME:$IMAGE_TAG"
-            }
-        }
+        // stage('Publish Docker Image to Yandex Cloud') {
+        //     steps {
+        //         echo 'Publishing image to YandexCloud..'
+        //         sh "docker push $IMAGE_NAME:$IMAGE_TAG"
+        //     }
+        // }
 
 
         
-        stage('Cleanup Docker Image') {
-            steps {
-                sh "sudo docker rmi $IMAGE_NAME:$IMAGE_TAG "    
-            }
-        }   
+        // stage('Cleanup Docker Image') {
+        //     steps {
+        //         sh "sudo docker rmi $IMAGE_NAME:$IMAGE_TAG "    
+        //     }
+        // }   
 
         stage("Checkout from SCM Helm Chart"){
             steps {
@@ -161,5 +161,16 @@ pipeline {
                 }
             }
         }
+
+
+        stage('Kubernetes List Test') {
+            steps {
+                withKubeConfig(caCertificate: '', clusterName: 'yc-managed-k8s-cat8eh5c4jffsphve4n6', contextName: '', credentialsId: 'K8S_CRED', namespace: 'webapps', restrictKubeConfigAccess: false, serverUrl: 'https://51.250.85.83') {
+                    sh "kubectl get nodes"
+                    sh "kubectl get all"
+                }
+            }
+        } 
+        
     }
 }
