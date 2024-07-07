@@ -45,7 +45,7 @@ const Header = () => {
   return (
     <Fragment>
       <div className="app-panel">
-        «Naruto» — фэнтези-манга:
+        «BERSERKKKKKKKKKKK» — фэнтези-манга:
         <Link href={ANDROID_APP_URL}>
           Google Play <ArrowRightIcon />
         </Link>
