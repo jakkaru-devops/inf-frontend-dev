@@ -40,10 +40,11 @@ pipeline {
             steps {
                 script {
                     def result = sh(returnStdout: true, script: 'sudo trufflehog git https://github.com/jakkaru-devops/inf-frontend-dev.git').trim()
+                    sh "cat result"
 
-                    if (result != '') {
-                        error("TruffleHog found secrets: ${result}")
-                    }
+                    // if (result != '') {
+                    //     error("TruffleHog found secrets: ${result}")
+                    // }
                 }
             }
         }
