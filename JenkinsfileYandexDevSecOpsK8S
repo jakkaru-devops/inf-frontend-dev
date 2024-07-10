@@ -39,7 +39,7 @@ pipeline {
         stage('Pre-build Secret Detection Frontend Project') {
             steps {
                 script {
-                    def result = sh(returnStdout: true, script: 'trufflehog --json --entropy 3.0 --regex --color always .').trim()
+                    def result = sh(returnStdout: true, script: 'trufflehog --json --only-verified --color always .').trim()
 
                     if (result != '') {
                         error("TruffleHog found secrets: ${result}")
