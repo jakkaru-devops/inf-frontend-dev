@@ -38,14 +38,13 @@ pipeline {
         
         stage('Pre-build Secret Detection Frontend Project') {
             steps {
-                script {
-                    sh "sudo trufflehog --json  git https://github.com/jakkaru-devops/inf-frontend-dev.git'"
-                    
-                    // def result = sh(returnStdout: true, script: 'sudo trufflehog --json  git https://github.com/jakkaru-devops/inf-frontend-dev.git').trim()
-                    // if (result != '') {
-                    //     error("TruffleHog found secrets: ${result}")
-                    // }
-                }
+                sh "sudo trufflehog --json git https://github.com/jakkaru-devops/inf-frontend-dev.git"
+                // script {
+                //     def result = sh(returnStdout: true, script: 'sudo trufflehog --json  git https://github.com/jakkaru-devops/inf-frontend-dev.git').trim()
+                //     if (result != '') {
+                //         error("TruffleHog found secrets: ${result}")
+                //     }
+                // }
             }
         }
 
