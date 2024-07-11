@@ -60,7 +60,7 @@ pipeline {
         stage('Pre-build SAST SonarQube Quality Gate') {
             steps {
                 script {
-                    timeout(time: 5, unit: 'MINUTES') {
+                    timeout(time: 15, unit: 'MINUTES') {
                         def qg = waitForQualityGate abortPipeline: true, credentialsId: 'sonar'
                         if (qg.status != 'OK') {
                             error "Прервано из-за сбоя Quality Gate: ${qg.status}"
