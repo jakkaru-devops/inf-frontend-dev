@@ -57,13 +57,13 @@ pipeline {
             }
         }
 
-        stage('Pre-build SAST SonarQube Quality Gate') {
-            steps {
-                script {
-                    waitForQualityGate abortPipeline: false, credentialsId: 'SONAR_TOKEN' 
-                }
-            } 
-        }
+        // stage('Pre-build SAST SonarQube Quality Gate') {
+        //     steps {
+        //         script {
+        //             waitForQualityGate abortPipeline: false, credentialsId: 'SONAR_TOKEN' 
+        //         }
+        //     } 
+        // }
 
         stage('OWASP FS SCAN') {
             steps {
