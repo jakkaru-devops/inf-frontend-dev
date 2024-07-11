@@ -49,7 +49,7 @@ pipeline {
         }
 
 
-        stage('Pre-build SAST SonaQube Scaning Frontend Project Code') {
+        stage('Pre-build SAST SonarQube Scaning Frontend Project Code') {
             steps {
                 withSonarQubeEnv('sonar') {
                     sh "$SCANNER_HOME/bin/sonar-scanner -Dsonar.projectKey=INF-FRONTEND -Dsonar.projectName=INF-FRONTEND"
@@ -57,10 +57,15 @@ pipeline {
             }
         }
 
-        stage("Pre-build SAST Quality Gate") {
+        stage('Pre-build SAST SonarQube Quality Gate') {
             steps {
                 script {
-                    waitForQualityGate abortPipeline: false, credentialsId: 'sonar'
+                    timeout(time: 5, unit: 'MINUTES') {
+                        def qg = waitForQualityGate abortPipeline: true, credentialsId: 'sonar'
+                        if (qg.status != 'OK') {
+                            error "Прервано из-за сбоя Quality Gate: ${qg.status}"
+                        }
+                    }
                 }
             }
         }
