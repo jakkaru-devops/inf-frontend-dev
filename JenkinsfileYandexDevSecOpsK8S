@@ -10,6 +10,7 @@ pipeline {
         DOCKER_ID = credentials('DOCKER_ID')
         DOCKER_PASSWORD = credentials('DOCKER_PASSWORD')
         GITHUB_TOKEN = credentials('GITHUB_TOKEN')
+        SONAR_TOKEN = credentials('SONAR_TOKEN')
         RELEASE = "1.0.0"
         IMAGE_TAG = "${BUILD_NUMBER}"
         CR_REGISTRY = "cr.yandex/crpn9ikb6hp5v19o9957"
@@ -61,7 +62,7 @@ pipeline {
             steps {
                 script {
                     timeout(time: 15, unit: 'MINUTES') {
-                        def qg = waitForQualityGate abortPipeline: true, credentialsId: 'sonar'
+                        def qg = waitForQualityGate abortPipeline: true, credentialsId: "$SONAR_TOKEN"
                         if (qg.status != 'OK') {
                             error "Прервано из-за сбоя Quality Gate: ${qg.status}"
                         }
