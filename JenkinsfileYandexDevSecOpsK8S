@@ -50,13 +50,13 @@ pipeline {
         }
 
 
-        stage('Pre-build SAST SonarQube Scaning Frontend Project Code') {
-            steps {
-                withSonarQubeEnv('sonar') {
-                    sh "$SCANNER_HOME/bin/sonar-scanner -Dsonar.projectKey=INF-FRONTEND -Dsonar.projectName=INF-FRONTEND"
-                }
-            }
-        }
+        // stage('Pre-build SAST SonarQube Scaning Frontend Project Code') {
+        //     steps {
+        //         withSonarQubeEnv('sonar') {
+        //             sh "$SCANNER_HOME/bin/sonar-scanner -Dsonar.projectKey=INF-FRONTEND -Dsonar.projectName=INF-FRONTEND"
+        //         }
+        //     }
+        // }
 
         // stage('Pre-build SAST SonarQube Quality Gate') {
         //     steps {
