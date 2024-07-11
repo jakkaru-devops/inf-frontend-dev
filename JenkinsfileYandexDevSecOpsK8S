@@ -49,6 +49,13 @@ pipeline {
             }
         }
 
+        stage('Install Dependensice Frontend Project') {
+            steps {
+                sh "npm install"
+            }
+        }
+
+
 
         // stage('Pre-build SAST SonarQube Scaning Frontend Project Code') {
         //     steps {
