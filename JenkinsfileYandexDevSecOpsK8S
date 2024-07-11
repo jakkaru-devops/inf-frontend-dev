@@ -57,6 +57,14 @@ pipeline {
             }
         }
 
+        stage("Pre-build SAST Quality Gate") {
+            steps {
+                script {
+                    waitForQualityGate abortPipeline: false, credentialsId: 'sonar'
+                }
+            }
+        }
+
 
          stage('Pre-build Source SCA Trivy DC Scaning Frontend Project') {
             steps {
