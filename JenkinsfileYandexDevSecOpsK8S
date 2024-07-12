@@ -210,7 +210,7 @@ pipeline {
             steps{
                 withKubeConfig(caCertificate: '', clusterName: 'yc-managed-k8s-cat8eh5c4jffsphve4n6', contextName: '', credentialsId: 'K8S_CRED', namespace: 'webapps', restrictKubeConfigAccess: false, serverUrl: 'https://84.201.135.119') {
                     // sh 'trivy k8s --report summary --exclude-namespace webapps'
-                    sh 'trivy k8s --namespace kube-system --report summary all'
+                    sh 'trivy k8s --include-namespaces webapps --report summary'
                 }
             }
         }
