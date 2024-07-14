@@ -148,13 +148,7 @@ pipeline {
                 git branch: 'main', credentialsId: 'jenkins-github', url: 'https://github.com/jakkaru-devops/inf-helm.git'
             }
         }
-
-        stage('List derictory frontend') {
-            steps {
-                sh "ls -la"
-            }
-        } 
-           
+  
 
         stage('Configure Git') {
             steps {
@@ -181,11 +175,7 @@ pipeline {
             }
         }
 
-        stage('List derictory Helm ') {
-            steps {
-                sh "ls -la"
-            }
-        } 
+        
 
         stage('Deploy To Kubernetes Helm Chart inf-project') {
             steps {
