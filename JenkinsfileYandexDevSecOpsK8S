@@ -137,7 +137,7 @@ pipeline {
         
         stage('Cleanup Docker Image') {
             steps {
-                sh "sudo docker rmi $IMAGE_NAME:$IMAGE_TAG "    
+                sh "docker rmi $IMAGE_NAME:$IMAGE_TAG "    
             }
         }   
 
