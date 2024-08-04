@@ -144,10 +144,17 @@ pipeline {
         stage("Checkout from SCM Helm Chart"){
             steps {
                 echo 'Checkout from SCM Helm Chart..'
-                git branch: 'main', credentialsId: 'jenkins-github', url: 'https://github.com/jakkaru-devops/inf-helm.git'
+                git branch: 'main', credentialsId: 'jenkins-github', url: 'git@github.com:jakkaru-devops/inf-argocd.git'
             }
         }
   
+
+         stage('List derictory Helm ') {
+            steps {
+                sh "ls -la"
+            }
+        } 
+
 
         stage('Configure Git') {
             steps {
@@ -160,7 +167,7 @@ pipeline {
 
        stage('Update helm chart values version frontend ') {
             steps {
-                dir('Production') {
+                dir('HelmCharts/Production') {
                     sh 'echo "Current directory: $(pwd)"'
                     sh 'ls -la'
                     sh "yq -i '.app.version =\"${IMAGE_TAG}\"' values.yaml"
