@@ -1,10 +1,10 @@
 pipeline {
     agent any
 
-    tools {
-        jdk 'jdk17'
-        nodejs 'node14'
-    }
+    // tools {
+    //     jdk 'jdk17'
+    //     nodejs 'node14'
+    // }
 
     environment {
         // SCANNER_HOME =  tool 'sonar-scanner'
@@ -48,11 +48,11 @@ pipeline {
             }
         }
 
-        stage('Install Dependensice Frontend Project') {
-            steps {
-                sh "npm install"
-            }
-        }
+        // stage('Install Dependensice Frontend Project') {
+        //     steps {
+        //         sh "npm install"
+        //     }
+        // }
 
 
 
