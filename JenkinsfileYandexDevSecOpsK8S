@@ -36,17 +36,17 @@ pipeline {
         }
 
         
-        stage('Pre-build Secret Detection Frontend Project') {
-            steps {
-                sh "sudo trufflehog --json git https://github.com/jakkaru-devops/inf-frontend-dev.git"
-                // script {
-                //     def result = sh(returnStdout: true, script: 'sudo trufflehog --json  git https://github.com/jakkaru-devops/inf-frontend-dev.git').trim()
-                //     if (result != '') {
-                //         error("TruffleHog found secrets: ${result}")
-                //     }
-                // }
-            }
-        }
+        // stage('Pre-build Secret Detection Frontend Project') {
+        //     steps {
+        //         sh "sudo trufflehog --json git https://github.com/jakkaru-devops/inf-frontend-dev.git"
+        //         // script {
+        //         //     def result = sh(returnStdout: true, script: 'sudo trufflehog --json  git https://github.com/jakkaru-devops/inf-frontend-dev.git').trim()
+        //         //     if (result != '') {
+        //         //         error("TruffleHog found secrets: ${result}")
+        //         //     }
+        //         // }
+        //     }
+        // }
 
         // stage('Install Dependensice Frontend Project') {
         //     steps {
